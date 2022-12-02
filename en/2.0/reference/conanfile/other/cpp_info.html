@@ -1,0 +1,777 @@
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>self.cpp and self.cpp_info &mdash; conan 2.0.0-beta documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/conan-favicon.png"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+
+  
+    <link rel="stylesheet" href="../../../_static/css/signup.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../../../_static/css/search.css" type="text/css" />
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="conan 2.0.0-beta documentation" href="../../../index.html"/>
+        <link rel="up" title="Other" href="../other.html"/>
+        <link rel="next" title="self.conf_info" href="conf_info.html"/>
+        <link rel="prev" title="Other" href="../other.html"/>
+
+ <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WK44ZFM');</script>
+<!-- End Google Tag Manager -->
+ 
+
+
+
+</script>
+
+
+  
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="https://conan.io">
+          
+
+          
+            
+            <img src="../../../_static/conan-logo-2.0.png" class="logo" />
+          
+          </a>
+
+            
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../whatsnew.html">What’s new in Conan 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../integrations.html">Integrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../reference.html">Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../commands.html">Commands</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../conanfile.html">conanfile.py</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../attributes.html">Attributes</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../other.html">Other</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">self.cpp and self.cpp_info</a></li>
+<li class="toctree-l4"><a class="reference internal" href="conf_info.html">self.conf_info</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dependencies.html">self.dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../methods.html">Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tools.html">Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../extensions.html">Extensions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+
+            
+          
+          <div class="dark_newsletter-div">
+             <p>Sign up for release updates:</p>
+              <script src="https://app-lon04.marketo.com/js/forms2/js/forms2.min.js"></script>
+              <form id="mktoForm_1479"></form>
+              <script>MktoForms2.loadForm("https://app-lon04.marketo.com", "256-FNZ-187", 1479);</script>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">conan</a>
+        
+      </nav>
+
+
+      
+      <script>
+        var reldir = "../../../index.html".replace("index.html","").replace("#", "");
+      </script>
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation" id="breadcrumbs">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../reference.html">Reference</a> &raquo;</li>
+        
+          <li><a href="../../conanfile.html">conanfile.py</a> &raquo;</li>
+        
+          <li><a href="../other.html">Other</a> &raquo;</li>
+        
+      <li>self.cpp and self.cpp_info</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/conan-io/docs/blob/master/reference/conanfile/other/cpp_info.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+</div>
+          <!--<select id="search" name="state" multiple="true" onchange="window.location = reldir + this.value;" style="width:90%"></select>
+          <hr/>-->
+          <!--<div class="admonition important">
+            <p class="admonition-title">Announcement</p>
+            <p>Recipe Hacking no. 2! Building on what we learnt during the first installment we will be working on more Conan 2.0 Migration! We'll start by reviewing some open pull requests and hopefully tackle a CMake example. <a
+            href=https://jfrog.zoom.us/webinar/register/WN_grFhqH0yRBeIfJmBvQoPJw> Register here to attend.</a></p>
+          </div>-->
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="self-cpp-and-self-cpp-info">
+<span id="conan-conanfile-model-cppinfo"></span><h1>self.cpp and self.cpp_info<a class="headerlink" href="#self-cpp-and-self-cpp-info" title="Permalink to this headline">¶</a></h1>
+<p>Properties to declare all the information needed by the consumers of a package: include directories,
+library names, library paths… Used both for editable packages and regular packages in the cache.</p>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>There are four instances available, only while running the following methods:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>At <code class="docutils literal notranslate"><span class="pre">layout(self)</span></code> method:</dt>
+<dd><ul class="first last">
+<li><p class="first"><strong>self.cpp.package</strong>: For a regular package being used from the Conan cache.</p>
+</li>
+<li><p class="first"><strong>self.cpp.source</strong>: For “editable” packages, to describe the artifacts under <code class="docutils literal notranslate"><span class="pre">self.source_folder</span></code>.</p>
+</li>
+<li><p class="first"><strong>self.cpp.build</strong>: For “editable” packages, to describe the artifacts under <code class="docutils literal notranslate"><span class="pre">self.build_folder</span></code>.</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">layout</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">folders</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="s2">&quot;src&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">folders</span><span class="o">.</span><span class="n">build</span> <span class="o">=</span> <span class="s2">&quot;build&quot;</span>
+
+    <span class="c1"># In the local folder (before a conan create) the artifacts can be found:</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">cpp</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">includedirs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;my_includes&quot;</span><span class="p">]</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">cpp</span><span class="o">.</span><span class="n">build</span><span class="o">.</span><span class="n">libdirs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;lib/x86_64&quot;</span><span class="p">]</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">cpp</span><span class="o">.</span><span class="n">build</span><span class="o">.</span><span class="n">libs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;foo&quot;</span><span class="p">]</span>
+
+    <span class="c1"># In the Conan cache, we packaged everything at the default standard directories, the library to link</span>
+    <span class="c1"># is &quot;foo&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">cpp</span><span class="o">.</span><span class="n">package</span><span class="o">.</span><span class="n">libs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;foo&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>At <code class="docutils literal notranslate"><span class="pre">package_info(self)</span></code> method:</dt>
+<dd><ul class="first last">
+<li><p class="first"><strong>self.cpp_info</strong>: Same as <em>self.cpp.package</em> but, at this point, the package contents are in
+<code class="docutils literal notranslate"><span class="pre">self.package_folder</span></code> so you can access the artifacts to fill the <code class="docutils literal notranslate"><span class="pre">self.cpp_info</span></code>, for example, using
+the <a class="reference internal" href="../../tools/files/basic.html#conan-tools-files-collect-libs"><span class="std std-ref">collect_libs()</span></a> tool.</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">package_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">cpp_info</span><span class="o">.</span><span class="n">libs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;foo&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="27%" />
+<col width="73%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">NAME</th>
+<th class="head">DESCRIPTION</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>.includedirs</td>
+<td><div class="first last line-block">
+<div class="line">Ordered list with include paths. Defaulted to <code class="docutils literal notranslate"><span class="pre">[&quot;include&quot;]</span></code></div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>.libdirs</td>
+<td><div class="first last line-block">
+<div class="line">Ordered list with lib paths. Defaulted to <code class="docutils literal notranslate"><span class="pre">[&quot;lib&quot;]</span></code></div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td>.resdirs</td>
+<td><div class="first last line-block">
+<div class="line">Ordered list of resource (data) paths. Defaulted to <code class="docutils literal notranslate"><span class="pre">[&quot;res&quot;]</span></code></div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>.bindirs</td>
+<td><div class="first last line-block">
+<div class="line">Ordered list with paths to binaries (executables, dynamic libraries,…).</div>
+<div class="line">Defaulted to <code class="docutils literal notranslate"><span class="pre">[&quot;bin&quot;]</span></code></div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td>.builddirs</td>
+<td><div class="first last line-block">
+<div class="line">Ordered list with build scripts directory paths. Defaulted to <code class="docutils literal notranslate"><span class="pre">[]</span></code> (empty)</div>
+<div class="line">CMakeDeps generator will search in these dirs for files like <em>findXXX.cmake</em></div>
+<div class="line">or <em>include(“XXX.cmake”)</em></div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>.libs</td>
+<td><div class="first last line-block">
+<div class="line">Ordered list with the library names, Defaulted to <code class="docutils literal notranslate"><span class="pre">[]</span></code> (empty)</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td>.defines</td>
+<td><div class="first last line-block">
+<div class="line">Preprocessor definitions. Defaulted to <code class="docutils literal notranslate"><span class="pre">[]</span></code> (empty)</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>.cflags</td>
+<td><div class="first last line-block">
+<div class="line">Ordered list with pure C flags. Defaulted to <code class="docutils literal notranslate"><span class="pre">[]</span></code> (empty)</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td>.cxxflags</td>
+<td><div class="first last line-block">
+<div class="line">Ordered list with C++ flags. Defaulted to <code class="docutils literal notranslate"><span class="pre">[]</span></code> (empty)</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>.sharedlinkflags</td>
+<td><div class="first last line-block">
+<div class="line">Ordered list with linker flags (shared libs). Defaulted to <code class="docutils literal notranslate"><span class="pre">[]</span></code> (empty)</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td>.exelinkflags</td>
+<td><div class="first last line-block">
+<div class="line">Ordered list with linker flags (executables). Defaulted to <code class="docutils literal notranslate"><span class="pre">[]</span></code> (empty)</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>.frameworks</td>
+<td><div class="first last line-block">
+<div class="line">Ordered list with the framework names (OSX), Defaulted to <code class="docutils literal notranslate"><span class="pre">[]</span></code> (empty)</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td>.frameworkdirs</td>
+<td><div class="first last line-block">
+<div class="line">Ordered list with frameworks search paths (OSX). Defaulted to <code class="docutils literal notranslate"><span class="pre">[&quot;Frameworks&quot;]</span></code></div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>.system_libs</td>
+<td><div class="first last line-block">
+<div class="line">Ordered list with the system library names. Defaulted to <code class="docutils literal notranslate"><span class="pre">[]</span></code> (empty)</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td>.components</td>
+<td><div class="first last line-block">
+<div class="line">Dictionary with different components a package may have: libraries,</div>
+<div class="line">executables… See docs below.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>.requires</td>
+<td><div class="first last line-block">
+<div class="line">List of components to consume from requirements (it applies only to</div>
+<div class="line">generators that implements components feature).</div>
+<div class="line"><strong>Warning</strong>: If declared, only the components listed here will used by the</div>
+<div class="line">linker and consumers.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td>.objects</td>
+<td><div class="first last line-block">
+<div class="line">List of object libraries (<em>.obj</em> or <em>.o</em>). Defaulted to <code class="docutils literal notranslate"><span class="pre">[]</span></code> (empty)</div>
+<div class="line">Only supported by <a class="reference internal" href="../../tools/cmake.html#conan-tools-cmake"><span class="std std-ref">CMakeDeps</span></a> generator</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Simplified accessors to libdirs, bindirs, includedirs:</strong> you can access
+<code class="docutils literal notranslate"><span class="pre">cpp_info.libdirs[0]</span></code>, <code class="docutils literal notranslate"><span class="pre">cpp_info.bindirs[0]</span></code> and <code class="docutils literal notranslate"><span class="pre">cpp_info.includedirs[0]</span></code> using
+<code class="docutils literal notranslate"><span class="pre">cpp_info.libdir</span></code>, <code class="docutils literal notranslate"><span class="pre">cpp_info.bindir</span></code> and <code class="docutils literal notranslate"><span class="pre">cpp_info.includedir</span></code></p>
+</div>
+<div class="section" id="properties">
+<h2>Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
+<p>Any CppInfo object can declare “properties” that can be read by the generators.
+The value of a property can be of any type. Check each generator reference to see the properties used on it.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">set_property</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">property_name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">get_property</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">property_name</span><span class="p">):</span>
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">package_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">cpp_info</span><span class="o">.</span><span class="n">set_property</span><span class="p">(</span><span class="s2">&quot;cmake_find_mode&quot;</span><span class="p">,</span> <span class="s2">&quot;both&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="components">
+<h2>Components<a class="headerlink" href="#components" title="Permalink to this headline">¶</a></h2>
+<p>If your package is composed by more than one library, it is possible to declare components that allow to define a
+<code class="docutils literal notranslate"><span class="pre">CppInfo</span></code> object per each of those libraries and also requirements between them and to components of other packages
+(the following case is not a real example):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">package_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">cpp_info</span><span class="o">.</span><span class="n">components</span><span class="p">[</span><span class="s2">&quot;crypto&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">set_property</span><span class="p">(</span><span class="s2">&quot;cmake_file_name&quot;</span><span class="p">,</span> <span class="s2">&quot;Crypto&quot;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">cpp_info</span><span class="o">.</span><span class="n">components</span><span class="p">[</span><span class="s2">&quot;crypto&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">libs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;libcrypto&quot;</span><span class="p">]</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">cpp_info</span><span class="o">.</span><span class="n">components</span><span class="p">[</span><span class="s2">&quot;crypto&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">defines</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;DEFINE_CRYPTO=1&quot;</span><span class="p">]</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">cpp_info</span><span class="o">.</span><span class="n">components</span><span class="p">[</span><span class="s2">&quot;crypto&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">requires</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;zlib::zlib&quot;</span><span class="p">]</span>  <span class="c1"># Depends on all components in zlib package</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">cpp_info</span><span class="o">.</span><span class="n">components</span><span class="p">[</span><span class="s2">&quot;ssl&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">set_property</span><span class="p">(</span><span class="s2">&quot;cmake_file_name&quot;</span><span class="p">,</span> <span class="s2">&quot;SSL&quot;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">cpp_info</span><span class="o">.</span><span class="n">components</span><span class="p">[</span><span class="s2">&quot;ssl&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">includedirs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;include/headers_ssl&quot;</span><span class="p">]</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">cpp_info</span><span class="o">.</span><span class="n">components</span><span class="p">[</span><span class="s2">&quot;ssl&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">libs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;libssl&quot;</span><span class="p">]</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">cpp_info</span><span class="o">.</span><span class="n">components</span><span class="p">[</span><span class="s2">&quot;ssl&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">requires</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;crypto&quot;</span><span class="p">,</span>
+                                                <span class="s2">&quot;boost::headers&quot;</span><span class="p">]</span>  <span class="c1"># Depends on headers component in boost package</span>
+
+    <span class="n">obj_ext</span> <span class="o">=</span> <span class="s2">&quot;obj&quot;</span> <span class="k">if</span> <span class="n">platform</span><span class="o">.</span><span class="n">system</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;Windows&quot;</span> <span class="k">else</span> <span class="s2">&quot;o&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">cpp_info</span><span class="o">.</span><span class="n">components</span><span class="p">[</span><span class="s2">&quot;ssl-objs&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">objects</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;lib&quot;</span><span class="p">,</span> <span class="s2">&quot;ssl-object.</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj_ext</span><span class="p">))]</span>
+</pre></div>
+</div>
+<p>Dependencies among components and to components of other requirements can be defined using the <code class="docutils literal notranslate"><span class="pre">requires</span></code> attribute and the name
+of the component. The dependency graph for components will be calculated and values will be aggregated in the correct order for each field.</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="conf_info.html" class="btn btn-neutral float-right" title="self.conf_info" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../other.html" class="btn btn-neutral" title="Other" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016-2022, JFrog.
+      Last updated on Dec 02, 2022.
+      <span><a href="#" class="ot-sdk-show-settings">Cookies Settings</a></span>
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <!--<span class="fa fa-pencil-square-o"> Other versions:</span> -->
+      Version: 2.0
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          
+            <dd><a href="/en/1.55/index.html">1.55</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.54/index.html">1.54</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.53/index.html">1.53</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.52/index.html">1.52</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.51/index.html">1.51</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.50/index.html">1.50</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.49/index.html">1.49</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.48/index.html">1.48</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.47/index.html">1.47</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.46/index.html">1.46</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.45/index.html">1.45</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.44/index.html">1.44</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.43/index.html">1.43</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.42/index.html">1.42</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.41/index.html">1.41</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.40/index.html">1.40</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.39/index.html">1.39</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.38/index.html">1.38</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.37/index.html">1.37</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.36/index.html">1.36</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.35/index.html">1.35</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.34/index.html">1.34</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.33/index.html">1.33</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.32/index.html">1.32</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.31/index.html">1.31</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.30/index.html">1.30</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.29/index.html">1.29</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.28/index.html">1.28</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.27/index.html">1.27</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.26/index.html">1.26</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.25/index.html">1.25</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.24/index.html">1.24</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.23/index.html">1.23</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.22/index.html">1.22</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.21/index.html">1.21</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.20/index.html">1.20</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.19/index.html">1.19</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.18/index.html">1.18</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.17/index.html">1.17</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.16/index.html">1.16</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.15/index.html">1.15</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.14/index.html">1.14</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.13/index.html">1.13</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.12/index.html">1.12</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.11/index.html">1.11</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.10/index.html">1.10</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.9/index.html">1.9</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.8/index.html">1.8</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.7/index.html">1.7</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.6/index.html">1.6</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.5/index.html">1.5</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.4/index.html">1.4</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.3/index.html">1.3</a></dd>
+          
+        
+          
+            <dd><a href="/en/2.0/index.html">2.0</a></dd>
+          
+        
+          
+            <dd><a href="/en/latest/index.html">latest</a></dd>
+          
+        
+      </dl>
+      <dl>
+        <dt>Downloads</dt>
+        
+          <dd><a href="/en/2.0/conan.pdf">PDF</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'2.0.0-beta',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  <!-- <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+  <script src="../../../_static/js/modernizr.min.js"></script>
+  <script src="../../../_static/js/search.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+-->
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+
+
+  <script>
+    // initSearch("2.0");
+  </script>
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WK44ZFM" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+ 
+
+
+</body>
+</html>

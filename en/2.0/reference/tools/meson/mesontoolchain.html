@@ -1,0 +1,971 @@
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>MesonToolchain &mdash; conan 2.0.0-beta documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/conan-favicon.png"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+
+  
+    <link rel="stylesheet" href="../../../_static/css/signup.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../../../_static/css/search.css" type="text/css" />
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="conan 2.0.0-beta documentation" href="../../../index.html"/>
+        <link rel="up" title="conan.tools.meson" href="../meson.html"/>
+        <link rel="next" title="MesonDeps" href="mesondeps.html"/>
+        <link rel="prev" title="conan.tools.meson" href="../meson.html"/>
+
+ <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WK44ZFM');</script>
+<!-- End Google Tag Manager -->
+ 
+
+
+
+</script>
+
+
+  
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="https://conan.io">
+          
+
+          
+            
+            <img src="../../../_static/conan-logo-2.0.png" class="logo" />
+          
+          </a>
+
+            
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../whatsnew.html">What’s new in Conan 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../integrations.html">Integrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../reference.html">Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../commands.html">Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../conanfile.html">conanfile.py</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../tools.html">Tools</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../cmake.html">conan.tools.cmake</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gnu.html">conan.tools.gnu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../apple.html">conan.tools.apple</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../env.html">conan.tools.env</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../build.html">conan.tools.build</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../files.html">conan.tools.files</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../meson.html">conan.tools.meson</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">MesonToolchain</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mesondeps.html">MesonDeps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="meson.html">Meson</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../system.html">conan.tools.system</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../microsoft.html">conan.tools.microsoft</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scm.html">Git</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../extensions.html">Extensions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+
+            
+          
+          <div class="dark_newsletter-div">
+             <p>Sign up for release updates:</p>
+              <script src="https://app-lon04.marketo.com/js/forms2/js/forms2.min.js"></script>
+              <form id="mktoForm_1479"></form>
+              <script>MktoForms2.loadForm("https://app-lon04.marketo.com", "256-FNZ-187", 1479);</script>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">conan</a>
+        
+      </nav>
+
+
+      
+      <script>
+        var reldir = "../../../index.html".replace("index.html","").replace("#", "");
+      </script>
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation" id="breadcrumbs">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../reference.html">Reference</a> &raquo;</li>
+        
+          <li><a href="../../tools.html">Tools</a> &raquo;</li>
+        
+          <li><a href="../meson.html">conan.tools.meson</a> &raquo;</li>
+        
+      <li>MesonToolchain</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/conan-io/docs/blob/master/reference/tools/meson/mesontoolchain.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+</div>
+          <!--<select id="search" name="state" multiple="true" onchange="window.location = reldir + this.value;" style="width:90%"></select>
+          <hr/>-->
+          <!--<div class="admonition important">
+            <p class="admonition-title">Announcement</p>
+            <p>Recipe Hacking no. 2! Building on what we learnt during the first installment we will be working on more Conan 2.0 Migration! We'll start by reviewing some open pull requests and hopefully tackle a CMake example. <a
+            href=https://jfrog.zoom.us/webinar/register/WN_grFhqH0yRBeIfJmBvQoPJw> Register here to attend.</a></p>
+          </div>-->
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="mesontoolchain">
+<span id="conan-tools-meson-mesontoolchain"></span><h1>MesonToolchain<a class="headerlink" href="#mesontoolchain" title="Permalink to this headline">¶</a></h1>
+<div class="admonition important" id="id1">
+<p class="first admonition-title">Important</p>
+<p class="last">This class will generate files that are only compatible with Meson versions &gt;= 0.55.0</p>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">MesonToolchain</span></code> is the toolchain generator for Meson and it can be used in the <code class="docutils literal notranslate"><span class="pre">generate()</span></code> method
+as follows:</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conan</span> <span class="kn">import</span> <span class="n">ConanFile</span>
+<span class="kn">from</span> <span class="nn">conan.tools.meson</span> <span class="kn">import</span> <span class="n">MesonToolchain</span>
+
+<span class="k">class</span> <span class="nc">App</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
+    <span class="n">settings</span> <span class="o">=</span> <span class="s2">&quot;os&quot;</span><span class="p">,</span> <span class="s2">&quot;arch&quot;</span><span class="p">,</span> <span class="s2">&quot;compiler&quot;</span><span class="p">,</span> <span class="s2">&quot;build_type&quot;</span>
+    <span class="n">requires</span> <span class="o">=</span> <span class="s2">&quot;hello/0.1&quot;</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;shared&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">]}</span>
+    <span class="n">default_options</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;shared&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">tc</span> <span class="o">=</span> <span class="n">MesonToolchain</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">tc</span><span class="o">.</span><span class="n">preprocessor_definitions</span><span class="p">[</span><span class="s2">&quot;MYDEFINE&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;MYDEF_VALUE&quot;</span>
+        <span class="n">tc</span><span class="o">.</span><span class="n">generate</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">When your recipe has dependencies <code class="docutils literal notranslate"><span class="pre">MesonToolchain</span></code> only works with the <code class="docutils literal notranslate"><span class="pre">PkgConfigDeps</span></code> generator.
+Please, do not use other generators, as they can have overlapping definitions that can conflict.</p>
+</div>
+<div class="section" id="generated-files">
+<h2>Generated files<a class="headerlink" href="#generated-files" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">MesonToolchain</span></code> generates the following files after a <strong class="command">conan install</strong> (or when building the package
+in the cache) with the information provided in the <code class="docutils literal notranslate"><span class="pre">generate()</span></code> method as well as information
+translated from the current <code class="docutils literal notranslate"><span class="pre">settings</span></code>, <code class="docutils literal notranslate"><span class="pre">conf</span></code>, etc.:</p>
+<ul class="simple">
+<li><em>conan_meson_native.ini</em>: if doing a native build.</li>
+<li><em>conan_meson_cross.ini</em>: if doing a cross-build (<a class="reference internal" href="../build.html#conan-tools-build"><span class="std std-ref">conan.tools.build</span></a>).</li>
+</ul>
+<div class="section" id="conan-meson-native-ini">
+<h3>conan_meson_native.ini<a class="headerlink" href="#conan-meson-native-ini" title="Permalink to this headline">¶</a></h3>
+<p>This file contains the definitions of all the Meson properties related to the Conan options
+and settings for the current package, platform, etc. This includes but is not limited to the following:</p>
+<ul>
+<li><p class="first">Detection of <code class="docutils literal notranslate"><span class="pre">default_library</span></code> from Conan settings.</p>
+<blockquote>
+<div><ul class="simple">
+<li>Based on existence/value of an option named <code class="docutils literal notranslate"><span class="pre">shared</span></code>.</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Detection of <code class="docutils literal notranslate"><span class="pre">buildtype</span></code> from Conan settings.</p>
+</li>
+<li><p class="first">Definition of the C++ standard as necessary.</p>
+</li>
+<li><p class="first">The Visual Studio runtime (<code class="docutils literal notranslate"><span class="pre">b_vscrt</span></code>), obtained from Conan input settings.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="conan-meson-cross-ini">
+<h3>conan_meson_cross.ini<a class="headerlink" href="#conan-meson-cross-ini" title="Permalink to this headline">¶</a></h3>
+<p>This file contains the same information as the previous <em>conan_meson_native.ini</em>,
+but with additional information to describe host, target, and build machines (such as the processor architecture).</p>
+<p>Check out the meson documentation for more details on native and cross files:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://mesonbuild.com/Machine-files.html">Machine files</a></li>
+<li><a class="reference external" href="https://mesonbuild.com/Native-environments.html">Native environments</a></li>
+<li><a class="reference external" href="https://mesonbuild.com/Cross-compilation.html">Cross compilation</a></li>
+</ul>
+</div>
+<div class="section" id="default-directories">
+<h3>Default directories<a class="headerlink" href="#default-directories" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">MesonToolchain</span></code> manages some of the directories used by Meson. These are variables declared under
+the <code class="docutils literal notranslate"><span class="pre">[project</span> <span class="pre">options]</span></code> section of the files <cite>conan_meson_native.ini</cite> and <cite>conan_meson_cross.ini</cite>
+(see more information about <a class="reference external" href="https://mesonbuild.com/Builtin-options.html#directories">Meson directories</a>):</p>
+<p><code class="docutils literal notranslate"><span class="pre">bindir</span></code>: value coming from <code class="docutils literal notranslate"><span class="pre">self.cpp.package.bindirs</span></code>. Defaulted to None.
+<code class="docutils literal notranslate"><span class="pre">sbindir</span></code>: value coming from <code class="docutils literal notranslate"><span class="pre">self.cpp.package.bindirs</span></code>. Defaulted to None.
+<code class="docutils literal notranslate"><span class="pre">libexecdir</span></code>: value coming from <code class="docutils literal notranslate"><span class="pre">self.cpp.package.bindirs</span></code>. Defaulted to None.
+<code class="docutils literal notranslate"><span class="pre">datadir</span></code>: value coming from <code class="docutils literal notranslate"><span class="pre">self.cpp.package.resdirs</span></code>. Defaulted to None.
+<code class="docutils literal notranslate"><span class="pre">localedir</span></code>: value coming from <code class="docutils literal notranslate"><span class="pre">self.cpp.package.resdirs</span></code>. Defaulted to None.
+<code class="docutils literal notranslate"><span class="pre">mandir</span></code>: value coming from <code class="docutils literal notranslate"><span class="pre">self.cpp.package.resdirs</span></code>. Defaulted to None.
+<code class="docutils literal notranslate"><span class="pre">infodir</span></code>: value coming from <code class="docutils literal notranslate"><span class="pre">self.cpp.package.resdirs</span></code>. Defaulted to None.
+<code class="docutils literal notranslate"><span class="pre">includedir</span></code>: value coming from <code class="docutils literal notranslate"><span class="pre">self.cpp.package.includedirs</span></code>. Defaulted to None.
+<code class="docutils literal notranslate"><span class="pre">libdir</span></code>: value coming from <code class="docutils literal notranslate"><span class="pre">self.cpp.package.libdirs</span></code>. Defaulted to None.</p>
+<p>Notice that it needs a <code class="docutils literal notranslate"><span class="pre">layout</span></code> to be able to initialize those <code class="docutils literal notranslate"><span class="pre">self.cpp.package.xxxxx</span></code> variables. For instance:</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conan</span> <span class="kn">import</span> <span class="n">ConanFile</span>
+<span class="kn">from</span> <span class="nn">conan.tools.meson</span> <span class="kn">import</span> <span class="n">MesonToolchain</span>
+<span class="k">class</span> <span class="nc">App</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
+    <span class="n">settings</span> <span class="o">=</span> <span class="s2">&quot;os&quot;</span><span class="p">,</span> <span class="s2">&quot;arch&quot;</span><span class="p">,</span> <span class="s2">&quot;compiler&quot;</span><span class="p">,</span> <span class="s2">&quot;build_type&quot;</span>
+    <span class="k">def</span> <span class="nf">layout</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">folders</span><span class="o">.</span><span class="n">build</span> <span class="o">=</span> <span class="s2">&quot;build&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cpp</span><span class="o">.</span><span class="n">package</span><span class="o">.</span><span class="n">resdirs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;res&quot;</span><span class="p">]</span>
+    <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">tc</span> <span class="o">=</span> <span class="n">MesonToolchain</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">tc</span><span class="o">.</span><span class="n">project_options</span><span class="p">[</span><span class="s2">&quot;datadir&quot;</span><span class="p">])</span>  <span class="c1"># Will print &#39;[&quot;res&quot;]&#39;</span>
+        <span class="n">tc</span><span class="o">.</span><span class="n">generate</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">All of them are saved only if they have any value. If the values are``None``, they won’t be mentioned
+in <code class="docutils literal notranslate"><span class="pre">[project</span> <span class="pre">options]</span></code> section.</p>
+</div>
+</div>
+</div>
+<div class="section" id="customization">
+<h2>Customization<a class="headerlink" href="#customization" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="attributes">
+<h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="definitions">
+<h4>definitions<a class="headerlink" href="#definitions" title="Permalink to this headline">¶</a></h4>
+<p>This attribute allows defining Meson project options:</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">tc</span> <span class="o">=</span> <span class="n">MesonToolchain</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+    <span class="n">tc</span><span class="o">.</span><span class="n">definitions</span><span class="p">[</span><span class="s2">&quot;MYVAR&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;MyValue&quot;</span>
+    <span class="n">tc</span><span class="o">.</span><span class="n">generate</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This is translated to:</p>
+<ul class="simple">
+<li>One project options definition for <code class="docutils literal notranslate"><span class="pre">MYVAR</span></code> in <code class="docutils literal notranslate"><span class="pre">conan_meson_native.ini</span></code> or <code class="docutils literal notranslate"><span class="pre">conan_meson_cross.ini</span></code> file.</li>
+</ul>
+</div>
+<div class="section" id="preprocessor-definitions">
+<h4>preprocessor_definitions<a class="headerlink" href="#preprocessor-definitions" title="Permalink to this headline">¶</a></h4>
+<p>This attribute allows defining compiler preprocessor definitions, for multiple configurations (Debug, Release, etc).</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">tc</span> <span class="o">=</span> <span class="n">MesonToolchain</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+    <span class="n">tc</span><span class="o">.</span><span class="n">preprocessor_definitions</span><span class="p">[</span><span class="s2">&quot;MYDEF&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;MyValue&quot;</span>
+    <span class="n">tc</span><span class="o">.</span><span class="n">generate</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This is translated to:</p>
+<ul class="simple">
+<li>One preprocessor definition for <code class="docutils literal notranslate"><span class="pre">MYDEF</span></code> in <code class="docutils literal notranslate"><span class="pre">conan_meson_native.ini</span></code> or <code class="docutils literal notranslate"><span class="pre">conan_meson_cross.ini</span></code> file.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="conf">
+<h3>conf<a class="headerlink" href="#conf" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">MesonToolchain</span></code> is affected by these <code class="docutils literal notranslate"><span class="pre">[conf]</span></code> variables:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">tools.meson.mesontoolchain:backend</span></code>. the meson <a class="reference external" href="https://mesonbuild.com/Configuring-a-build-directory.html">backend</a> to use. Possible values:
+<code class="docutils literal notranslate"><span class="pre">ninja</span></code>, <code class="docutils literal notranslate"><span class="pre">vs</span></code>, <code class="docutils literal notranslate"><span class="pre">vs2010</span></code>, <code class="docutils literal notranslate"><span class="pre">vs2015</span></code>, <code class="docutils literal notranslate"><span class="pre">vs2017</span></code>, <code class="docutils literal notranslate"><span class="pre">vs2019</span></code>, <code class="docutils literal notranslate"><span class="pre">xcode</span></code>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">tools.apple:sdk_path</span></code> argument for SDK path in case of Apple cross-compilation. It is used as value
+of the flag <code class="docutils literal notranslate"><span class="pre">-isysroot</span></code>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">tools.android:ndk_path</span></code> argument for NDK path in case of Android cross-compilation. It is used to get
+some binaries like <code class="docutils literal notranslate"><span class="pre">c</span></code>, <code class="docutils literal notranslate"><span class="pre">cpp</span></code> and <code class="docutils literal notranslate"><span class="pre">ar</span></code> used in <code class="docutils literal notranslate"><span class="pre">[binaries]</span></code> section from <em>conan_meson_cross.ini</em>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">tools.build:cxxflags</span></code> list of extra C++ flags that is used by <code class="docutils literal notranslate"><span class="pre">cpp_args</span></code>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">tools.build:cflags</span></code> list of extra of pure C flags that is used by <code class="docutils literal notranslate"><span class="pre">c_args</span></code>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">tools.build:sharedlinkflags</span></code> list of extra linker flags that is used by <code class="docutils literal notranslate"><span class="pre">c_link_args</span></code> and <code class="docutils literal notranslate"><span class="pre">cpp_link_args</span></code>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">tools.build:exelinkflags</span></code> list of extra linker flags that is used by <code class="docutils literal notranslate"><span class="pre">c_link_args</span></code> and <code class="docutils literal notranslate"><span class="pre">cpp_link_args</span></code>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">tools.build:compiler_executables</span></code> dict-like Python object which specifies the compiler as key
+and the compiler executable path as value. Those keys will be mapped as follows:<ul>
+<li><code class="docutils literal notranslate"><span class="pre">c</span></code>: will set <code class="docutils literal notranslate"><span class="pre">c</span></code> in <code class="docutils literal notranslate"><span class="pre">[binaries]</span></code> section from <em>conan_meson_xxxx.ini</em>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">cpp</span></code>: will set <code class="docutils literal notranslate"><span class="pre">cpp</span></code> in <code class="docutils literal notranslate"><span class="pre">[binaries]</span></code> section from <em>conan_meson_xxxx.ini</em>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">objc</span></code>: will set <code class="docutils literal notranslate"><span class="pre">objc</span></code> in <code class="docutils literal notranslate"><span class="pre">[binaries]</span></code> section from <em>conan_meson_xxxx.ini</em>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">objcpp</span></code>: will set <code class="docutils literal notranslate"><span class="pre">objcpp</span></code> in <code class="docutils literal notranslate"><span class="pre">[binaries]</span></code> section from <em>conan_meson_xxxx.ini</em>.</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="cross-building-for-apple-and-android">
+<h2>Cross-building for Apple and Android<a class="headerlink" href="#cross-building-for-apple-and-android" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">MesonToolchain</span></code> adds all the flags required to cross-compile for Apple (MacOS M1, iOS, etc.) and Android.</p>
+<p><strong>Apple</strong></p>
+<p>It adds link flags <code class="docutils literal notranslate"><span class="pre">-arch</span> <span class="pre">XXX</span></code>, <code class="docutils literal notranslate"><span class="pre">-isysroot</span> <span class="pre">[SDK_PATH]</span></code> and the minimum deployment target flag, e.g., <code class="docutils literal notranslate"><span class="pre">-mios-version-min=8.0</span></code>
+to the <code class="docutils literal notranslate"><span class="pre">MesonToolchain</span></code> <code class="docutils literal notranslate"><span class="pre">c_args</span></code>, <code class="docutils literal notranslate"><span class="pre">c_link_args</span></code>, <code class="docutils literal notranslate"><span class="pre">cpp_args</span></code>, and <code class="docutils literal notranslate"><span class="pre">cpp_link_args</span></code> attributes, given the
+Conan settings for any Apple OS (iOS, watchOS, etc.) and the <code class="docutils literal notranslate"><span class="pre">tools.apple:sdk_path</span></code> configuration value like it’s shown
+in this example of host profile:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text"><strong>ios_host_profile</strong></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[settings]
+os = iOS
+os.version = 10.0
+os.sdk = iphoneos
+arch = armv8
+compiler = apple-clang
+compiler.version = 12.0
+compiler.libcxx = libc++
+
+[conf]
+tools.apple:sdk_path=/my/path/to/iPhoneOS.sdk
+</pre></div>
+</div>
+</div>
+<div class="section" id="objective-c-arguments">
+<h3>Objective-C arguments<a class="headerlink" href="#objective-c-arguments" title="Permalink to this headline">¶</a></h3>
+<p>In Apple OS’s there are also specific Objective-C/Objective-C++ arguments: <code class="docutils literal notranslate"><span class="pre">objc</span></code>,
+<code class="docutils literal notranslate"><span class="pre">objcpp</span></code>, <code class="docutils literal notranslate"><span class="pre">objc_args</span></code>, <code class="docutils literal notranslate"><span class="pre">objc_link_args</span></code>, <code class="docutils literal notranslate"><span class="pre">objcpp_args</span></code>, and <code class="docutils literal notranslate"><span class="pre">objcpp_link_args</span></code>,
+as public attributes of the <code class="docutils literal notranslate"><span class="pre">MesonToolchain</span></code> class, where the variables <code class="docutils literal notranslate"><span class="pre">objc</span></code> and
+<code class="docutils literal notranslate"><span class="pre">objcpp</span></code> are initialized as <code class="docutils literal notranslate"><span class="pre">clang</span></code> and <code class="docutils literal notranslate"><span class="pre">clang++</span></code> respectively by default.</p>
+<p><strong>Android</strong></p>
+<p>It initializes the <code class="docutils literal notranslate"><span class="pre">MesonToolchain</span></code> <code class="docutils literal notranslate"><span class="pre">c</span></code>, <code class="docutils literal notranslate"><span class="pre">cpp</span></code>, and <code class="docutils literal notranslate"><span class="pre">ar</span></code> attributes, which are needed to cross-compile for Android, given the
+Conan settings for Android and the <code class="docutils literal notranslate"><span class="pre">tools.android:ndk_path</span></code> configuration value like it’s shown
+in this example of host profile:</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text"><strong>android_host_profile</strong></span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[settings]
+os = Android
+os.api_level = 21
+arch = armv8
+
+[conf]
+tools.android:ndk_path=/my/path/to/NDK
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="read-more">
+<h2>Read more<a class="headerlink" href="#read-more" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="../../../examples/tools/meson/mesontoolchain/build_simple_meson_project.html#examples-tools-meson-toolchain-build-simple-meson-project"><span class="std std-ref">Getting started with Meson</span></a></li>
+</ul>
+</div>
+<div class="section" id="reference">
+<span id="mesontoolchain-reference"></span><h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="conan.tools.meson.MesonToolchain">
+<em class="property">class </em><code class="descname">MesonToolchain</code><span class="sig-paren">(</span><em>conanfile</em>, <em>backend=None</em><span class="sig-paren">)</span><a class="headerlink" href="#conan.tools.meson.MesonToolchain" title="Permalink to this definition">¶</a></dt>
+<dd><p>MesonToolchain generator</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>conanfile</strong> – <code class="docutils literal notranslate"><span class="pre">&lt;</span> <span class="pre">ConanFile</span> <span class="pre">object</span> <span class="pre">&gt;</span></code> The current recipe object. Always use <code class="docutils literal notranslate"><span class="pre">self</span></code>.</li>
+<li><strong>backend</strong> – <code class="docutils literal notranslate"><span class="pre">str</span></code> <code class="docutils literal notranslate"><span class="pre">backend</span></code> Meson variable value. By default, <code class="docutils literal notranslate"><span class="pre">ninja</span></code>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="conan.tools.meson.MesonToolchain.properties">
+<code class="descname">properties</code><em class="property"> = None</em><a class="headerlink" href="#conan.tools.meson.MesonToolchain.properties" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dict-like object that defines Meson``properties`` with <code class="docutils literal notranslate"><span class="pre">key=value</span></code> format</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="conan.tools.meson.MesonToolchain.project_options">
+<code class="descname">project_options</code><em class="property"> = None</em><a class="headerlink" href="#conan.tools.meson.MesonToolchain.project_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dict-like object that defines Meson <code class="docutils literal notranslate"><span class="pre">project</span> <span class="pre">options</span></code> with <code class="docutils literal notranslate"><span class="pre">key=value</span></code> format</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="conan.tools.meson.MesonToolchain.preprocessor_definitions">
+<code class="descname">preprocessor_definitions</code><em class="property"> = None</em><a class="headerlink" href="#conan.tools.meson.MesonToolchain.preprocessor_definitions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dict-like object that defines Meson <code class="docutils literal notranslate"><span class="pre">preprocessor</span> <span class="pre">definitions</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="conan.tools.meson.MesonToolchain.pkg_config_path">
+<code class="descname">pkg_config_path</code><em class="property"> = None</em><a class="headerlink" href="#conan.tools.meson.MesonToolchain.pkg_config_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the Meson <code class="docutils literal notranslate"><span class="pre">pkg_config_path</span></code> variable</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="conan.tools.meson.MesonToolchain.cross_build">
+<code class="descname">cross_build</code><em class="property"> = None</em><a class="headerlink" href="#conan.tools.meson.MesonToolchain.cross_build" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dict-like object with the build, host, and target as the Meson machine context</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="conan.tools.meson.MesonToolchain.c">
+<code class="descname">c</code><em class="property"> = None</em><a class="headerlink" href="#conan.tools.meson.MesonToolchain.c" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the Meson <code class="docutils literal notranslate"><span class="pre">c</span></code> variable. Defaulted to <code class="docutils literal notranslate"><span class="pre">CC</span></code> build environment value</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="conan.tools.meson.MesonToolchain.cpp">
+<code class="descname">cpp</code><em class="property"> = None</em><a class="headerlink" href="#conan.tools.meson.MesonToolchain.cpp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the Meson <code class="docutils literal notranslate"><span class="pre">cpp</span></code> variable. Defaulted to <code class="docutils literal notranslate"><span class="pre">CXX</span></code> build environment value</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="conan.tools.meson.MesonToolchain.c_ld">
+<code class="descname">c_ld</code><em class="property"> = None</em><a class="headerlink" href="#conan.tools.meson.MesonToolchain.c_ld" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the Meson <code class="docutils literal notranslate"><span class="pre">c_ld</span></code> variable. Defaulted to <code class="docutils literal notranslate"><span class="pre">CC_LD</span></code> or <code class="docutils literal notranslate"><span class="pre">LD</span></code> build
+environment value</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="conan.tools.meson.MesonToolchain.cpp_ld">
+<code class="descname">cpp_ld</code><em class="property"> = None</em><a class="headerlink" href="#conan.tools.meson.MesonToolchain.cpp_ld" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the Meson <code class="docutils literal notranslate"><span class="pre">cpp_ld</span></code> variable. Defaulted to <code class="docutils literal notranslate"><span class="pre">CXX_LD</span></code> or <code class="docutils literal notranslate"><span class="pre">LD</span></code> build
+environment value</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="conan.tools.meson.MesonToolchain.ar">
+<code class="descname">ar</code><em class="property"> = None</em><a class="headerlink" href="#conan.tools.meson.MesonToolchain.ar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the Meson <code class="docutils literal notranslate"><span class="pre">ar</span></code> variable. Defaulted to <code class="docutils literal notranslate"><span class="pre">AR</span></code> build environment value</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="conan.tools.meson.MesonToolchain.strip">
+<code class="descname">strip</code><em class="property"> = None</em><a class="headerlink" href="#conan.tools.meson.MesonToolchain.strip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the Meson <code class="docutils literal notranslate"><span class="pre">strip</span></code> variable. Defaulted to <code class="docutils literal notranslate"><span class="pre">STRIP</span></code> build environment value</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="conan.tools.meson.MesonToolchain.as_">
+<code class="descname">as_</code><em class="property"> = None</em><a class="headerlink" href="#conan.tools.meson.MesonToolchain.as_" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the Meson <code class="docutils literal notranslate"><span class="pre">as</span></code> variable. Defaulted to <code class="docutils literal notranslate"><span class="pre">AS</span></code> build environment value</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="conan.tools.meson.MesonToolchain.windres">
+<code class="descname">windres</code><em class="property"> = None</em><a class="headerlink" href="#conan.tools.meson.MesonToolchain.windres" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the Meson <code class="docutils literal notranslate"><span class="pre">windres</span></code> variable. Defaulted to <code class="docutils literal notranslate"><span class="pre">WINDRES</span></code> build environment value</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="conan.tools.meson.MesonToolchain.pkgconfig">
+<code class="descname">pkgconfig</code><em class="property"> = None</em><a class="headerlink" href="#conan.tools.meson.MesonToolchain.pkgconfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the Meson <code class="docutils literal notranslate"><span class="pre">pkgconfig</span></code> variable. Defaulted to <code class="docutils literal notranslate"><span class="pre">PKG_CONFIG</span></code>
+build environment value</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="conan.tools.meson.MesonToolchain.c_args">
+<code class="descname">c_args</code><em class="property"> = None</em><a class="headerlink" href="#conan.tools.meson.MesonToolchain.c_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the Meson <code class="docutils literal notranslate"><span class="pre">c_args</span></code> variable. Defaulted to <code class="docutils literal notranslate"><span class="pre">CFLAGS</span></code> build environment value</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="conan.tools.meson.MesonToolchain.c_link_args">
+<code class="descname">c_link_args</code><em class="property"> = None</em><a class="headerlink" href="#conan.tools.meson.MesonToolchain.c_link_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the Meson <code class="docutils literal notranslate"><span class="pre">c_link_args</span></code> variable. Defaulted to <code class="docutils literal notranslate"><span class="pre">LDFLAGS</span></code> build
+environment value</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="conan.tools.meson.MesonToolchain.cpp_args">
+<code class="descname">cpp_args</code><em class="property"> = None</em><a class="headerlink" href="#conan.tools.meson.MesonToolchain.cpp_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the Meson <code class="docutils literal notranslate"><span class="pre">cpp_args</span></code> variable. Defaulted to <code class="docutils literal notranslate"><span class="pre">CXXFLAGS</span></code> build environment value</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="conan.tools.meson.MesonToolchain.cpp_link_args">
+<code class="descname">cpp_link_args</code><em class="property"> = None</em><a class="headerlink" href="#conan.tools.meson.MesonToolchain.cpp_link_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the Meson <code class="docutils literal notranslate"><span class="pre">cpp_link_args</span></code> variable. Defaulted to <code class="docutils literal notranslate"><span class="pre">LDFLAGS</span></code> build
+environment value</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="conan.tools.meson.MesonToolchain.apple_arch_flag">
+<code class="descname">apple_arch_flag</code><em class="property"> = None</em><a class="headerlink" href="#conan.tools.meson.MesonToolchain.apple_arch_flag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apple arch flag as a list, e.g., <code class="docutils literal notranslate"><span class="pre">[&quot;-arch&quot;,</span> <span class="pre">&quot;i386&quot;]</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="conan.tools.meson.MesonToolchain.apple_isysroot_flag">
+<code class="descname">apple_isysroot_flag</code><em class="property"> = None</em><a class="headerlink" href="#conan.tools.meson.MesonToolchain.apple_isysroot_flag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apple sysroot flag as a list, e.g., <code class="docutils literal notranslate"><span class="pre">[&quot;-isysroot&quot;,</span> <span class="pre">&quot;./Platforms/MacOSX.platform&quot;]</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="conan.tools.meson.MesonToolchain.apple_min_version_flag">
+<code class="descname">apple_min_version_flag</code><em class="property"> = None</em><a class="headerlink" href="#conan.tools.meson.MesonToolchain.apple_min_version_flag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apple minimum binary version flag as a list, e.g., <code class="docutils literal notranslate"><span class="pre">[&quot;-mios-version-min&quot;,</span> <span class="pre">&quot;10.8&quot;]</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="conan.tools.meson.MesonToolchain.objc">
+<code class="descname">objc</code><em class="property"> = None</em><a class="headerlink" href="#conan.tools.meson.MesonToolchain.objc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the Meson <code class="docutils literal notranslate"><span class="pre">objc</span></code> variable. Defaulted to <code class="docutils literal notranslate"><span class="pre">None</span></code>, if if any Apple OS <code class="docutils literal notranslate"><span class="pre">clang</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="conan.tools.meson.MesonToolchain.objcpp">
+<code class="descname">objcpp</code><em class="property"> = None</em><a class="headerlink" href="#conan.tools.meson.MesonToolchain.objcpp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the Meson <code class="docutils literal notranslate"><span class="pre">objcpp</span></code> variable. Defaulted to <code class="docutils literal notranslate"><span class="pre">None</span></code>, if if any Apple OS <code class="docutils literal notranslate"><span class="pre">clang++</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="conan.tools.meson.MesonToolchain.objc_args">
+<code class="descname">objc_args</code><em class="property"> = None</em><a class="headerlink" href="#conan.tools.meson.MesonToolchain.objc_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the Meson <code class="docutils literal notranslate"><span class="pre">objc_args</span></code> variable. Defaulted to <code class="docutils literal notranslate"><span class="pre">OBJCFLAGS</span></code> build environment value</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="conan.tools.meson.MesonToolchain.objc_link_args">
+<code class="descname">objc_link_args</code><em class="property"> = None</em><a class="headerlink" href="#conan.tools.meson.MesonToolchain.objc_link_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the Meson <code class="docutils literal notranslate"><span class="pre">objc_link_args</span></code> variable. Defaulted to <code class="docutils literal notranslate"><span class="pre">LDFLAGS</span></code> build environment value</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="conan.tools.meson.MesonToolchain.objcpp_args">
+<code class="descname">objcpp_args</code><em class="property"> = None</em><a class="headerlink" href="#conan.tools.meson.MesonToolchain.objcpp_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the Meson <code class="docutils literal notranslate"><span class="pre">objcpp_args</span></code> variable. Defaulted to <code class="docutils literal notranslate"><span class="pre">OBJCXXFLAGS</span></code> build environment value</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="conan.tools.meson.MesonToolchain.objcpp_link_args">
+<code class="descname">objcpp_link_args</code><em class="property"> = None</em><a class="headerlink" href="#conan.tools.meson.MesonToolchain.objcpp_link_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the Meson <code class="docutils literal notranslate"><span class="pre">objcpp_link_args</span></code> variable. Defaulted to <code class="docutils literal notranslate"><span class="pre">LDFLAGS</span></code> build environment value</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="conan.tools.meson.MesonToolchain.generate">
+<code class="descname">generate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#conan.tools.meson.MesonToolchain.generate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a <code class="docutils literal notranslate"><span class="pre">conan_meson_native.ini</span></code> (if native builds) or a
+<code class="docutils literal notranslate"><span class="pre">conan_meson_cross.ini</span></code> (if cross builds) with the proper content.
+If Windows OS, it will be created a <code class="docutils literal notranslate"><span class="pre">conanvcvars.bat</span></code> as well.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mesondeps.html" class="btn btn-neutral float-right" title="MesonDeps" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../meson.html" class="btn btn-neutral" title="conan.tools.meson" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016-2022, JFrog.
+      Last updated on Dec 02, 2022.
+      <span><a href="#" class="ot-sdk-show-settings">Cookies Settings</a></span>
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <!--<span class="fa fa-pencil-square-o"> Other versions:</span> -->
+      Version: 2.0
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          
+            <dd><a href="/en/1.55/index.html">1.55</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.54/index.html">1.54</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.53/index.html">1.53</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.52/index.html">1.52</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.51/index.html">1.51</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.50/index.html">1.50</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.49/index.html">1.49</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.48/index.html">1.48</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.47/index.html">1.47</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.46/index.html">1.46</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.45/index.html">1.45</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.44/index.html">1.44</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.43/index.html">1.43</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.42/index.html">1.42</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.41/index.html">1.41</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.40/index.html">1.40</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.39/index.html">1.39</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.38/index.html">1.38</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.37/index.html">1.37</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.36/index.html">1.36</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.35/index.html">1.35</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.34/index.html">1.34</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.33/index.html">1.33</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.32/index.html">1.32</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.31/index.html">1.31</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.30/index.html">1.30</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.29/index.html">1.29</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.28/index.html">1.28</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.27/index.html">1.27</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.26/index.html">1.26</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.25/index.html">1.25</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.24/index.html">1.24</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.23/index.html">1.23</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.22/index.html">1.22</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.21/index.html">1.21</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.20/index.html">1.20</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.19/index.html">1.19</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.18/index.html">1.18</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.17/index.html">1.17</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.16/index.html">1.16</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.15/index.html">1.15</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.14/index.html">1.14</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.13/index.html">1.13</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.12/index.html">1.12</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.11/index.html">1.11</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.10/index.html">1.10</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.9/index.html">1.9</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.8/index.html">1.8</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.7/index.html">1.7</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.6/index.html">1.6</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.5/index.html">1.5</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.4/index.html">1.4</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.3/index.html">1.3</a></dd>
+          
+        
+          
+            <dd><a href="/en/2.0/index.html">2.0</a></dd>
+          
+        
+          
+            <dd><a href="/en/latest/index.html">latest</a></dd>
+          
+        
+      </dl>
+      <dl>
+        <dt>Downloads</dt>
+        
+          <dd><a href="/en/2.0/conan.pdf">PDF</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'2.0.0-beta',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  <!-- <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+  <script src="../../../_static/js/modernizr.min.js"></script>
+  <script src="../../../_static/js/search.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+-->
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+
+
+  <script>
+    // initSearch("2.0");
+  </script>
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WK44ZFM" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+ 
+
+
+</body>
+</html>

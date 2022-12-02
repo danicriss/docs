@@ -1,0 +1,731 @@
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>conan.tools.apple.fix_apple_shared_install_name() &mdash; conan 2.0.0-beta documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/conan-favicon.png"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+
+  
+    <link rel="stylesheet" href="../../../_static/css/signup.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../../../_static/css/search.css" type="text/css" />
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="conan 2.0.0-beta documentation" href="../../../index.html"/>
+        <link rel="up" title="conan.tools.apple" href="../apple.html"/>
+        <link rel="next" title="conan.tools.env" href="../env.html"/>
+        <link rel="prev" title="XcodeBuild" href="xcodebuild.html"/>
+
+ <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WK44ZFM');</script>
+<!-- End Google Tag Manager -->
+ 
+
+
+
+</script>
+
+
+  
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="https://conan.io">
+          
+
+          
+            
+            <img src="../../../_static/conan-logo-2.0.png" class="logo" />
+          
+          </a>
+
+            
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../whatsnew.html">What’s new in Conan 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../integrations.html">Integrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../reference.html">Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../commands.html">Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../conanfile.html">conanfile.py</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../tools.html">Tools</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../cmake.html">conan.tools.cmake</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gnu.html">conan.tools.gnu</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../apple.html">conan.tools.apple</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="xcodedeps.html">XcodeDeps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xcodetoolchain.html">XcodeToolchain</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xcodebuild.html">XcodeBuild</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">conan.tools.apple.fix_apple_shared_install_name()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#conan-tools-apple-is-apple-os">conan.tools.apple.is_apple_os()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#conan-tools-apple-to-apple-arch">conan.tools.apple.to_apple_arch()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#conan-tools-apple-xcrun">conan.tools.apple.XCRun()</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../env.html">conan.tools.env</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../build.html">conan.tools.build</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../files.html">conan.tools.files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../meson.html">conan.tools.meson</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../system.html">conan.tools.system</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../microsoft.html">conan.tools.microsoft</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scm.html">Git</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../extensions.html">Extensions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+
+            
+          
+          <div class="dark_newsletter-div">
+             <p>Sign up for release updates:</p>
+              <script src="https://app-lon04.marketo.com/js/forms2/js/forms2.min.js"></script>
+              <form id="mktoForm_1479"></form>
+              <script>MktoForms2.loadForm("https://app-lon04.marketo.com", "256-FNZ-187", 1479);</script>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">conan</a>
+        
+      </nav>
+
+
+      
+      <script>
+        var reldir = "../../../index.html".replace("index.html","").replace("#", "");
+      </script>
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation" id="breadcrumbs">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../reference.html">Reference</a> &raquo;</li>
+        
+          <li><a href="../../tools.html">Tools</a> &raquo;</li>
+        
+          <li><a href="../apple.html">conan.tools.apple</a> &raquo;</li>
+        
+      <li>conan.tools.apple.fix_apple_shared_install_name()</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/conan-io/docs/blob/master/reference/tools/apple/other.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+</div>
+          <!--<select id="search" name="state" multiple="true" onchange="window.location = reldir + this.value;" style="width:90%"></select>
+          <hr/>-->
+          <!--<div class="admonition important">
+            <p class="admonition-title">Announcement</p>
+            <p>Recipe Hacking no. 2! Building on what we learnt during the first installment we will be working on more Conan 2.0 Migration! We'll start by reviewing some open pull requests and hopefully tackle a CMake example. <a
+            href=https://jfrog.zoom.us/webinar/register/WN_grFhqH0yRBeIfJmBvQoPJw> Register here to attend.</a></p>
+          </div>-->
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="conan-tools-apple-fix-apple-shared-install-name">
+<span id="id1"></span><h1>conan.tools.apple.fix_apple_shared_install_name()<a class="headerlink" href="#conan-tools-apple-fix-apple-shared-install-name" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="conan.tools.apple.fix_apple_shared_install_name">
+<code class="descname">fix_apple_shared_install_name</code><span class="sig-paren">(</span><em>conanfile</em><span class="sig-paren">)</span><a class="headerlink" href="#conan.tools.apple.fix_apple_shared_install_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Search for all the <em>dylib</em> files in the conanfile’s <em>package_folder</em> and fix
+both the <code class="docutils literal notranslate"><span class="pre">LC_ID_DYLIB</span></code> and <code class="docutils literal notranslate"><span class="pre">LC_LOAD_DYLIB</span></code> fields on those files using the
+<em>install_name_tool</em> utility available in macOS to set <code class="docutils literal notranslate"><span class="pre">&#64;rpath</span></code>.</p>
+</dd></dl>
+
+<p>This tool will search for all the <em>dylib</em> files in the conanfile’s <em>package_folder</em> and fix
+the library <em>install names</em> (the <code class="docutils literal notranslate"><span class="pre">LC_ID_DYLIB</span></code> header). Libraries and executables
+inside the package folder will also have the <code class="docutils literal notranslate"><span class="pre">LC_LOAD_DYLIB</span></code> fields updated to reflect
+the patched install names. Executables inside the package will also get an <code class="docutils literal notranslate"><span class="pre">LC_RPATH</span></code>
+entry pointing to the relative location of the libraries inside the package folder.
+This is done using the <em>install_name_tool</em> utility available in macOS, as outlined below:</p>
+<ul class="simple">
+<li>For <code class="docutils literal notranslate"><span class="pre">LC_ID_DYLIB</span></code> which is the field containing the install name of the library, it
+will change the install name to one that uses the <code class="docutils literal notranslate"><span class="pre">&#64;rpath</span></code>. For example, if the
+install name is <code class="docutils literal notranslate"><span class="pre">/path/to/lib/libname.dylib</span></code>, the new install name will be
+<code class="docutils literal notranslate"><span class="pre">&#64;rpath/libname.dylib</span></code>. This is done by internally executing something like:</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>install_name_tool /path/to/lib/libname.dylib -id @rpath/libname.dylib
+</pre></div>
+</div>
+<ul class="simple">
+<li>For <code class="docutils literal notranslate"><span class="pre">LC_LOAD_DYLIB</span></code> which is the field containing the path to the library
+dependencies, it will change the path of the dependencies to one that uses the
+<code class="docutils literal notranslate"><span class="pre">&#64;rpath</span></code>. For example, if a binary has a dependency on <code class="docutils literal notranslate"><span class="pre">/path/to/lib/dependency.dylib</span></code>,
+this will be updated to be <code class="docutils literal notranslate"><span class="pre">&#64;rpath/dependency.dylib</span></code>. This is done for both libraries
+and executables inside the package folder, invoking <cite>install_name_tool</cite> as below:</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>install_name_tool /path/to/lib/libname.dylib -change /path/to/lib/dependency.dylib @rpath/dependency.dylib
+</pre></div>
+</div>
+<ul class="simple">
+<li>For <code class="docutils literal notranslate"><span class="pre">LC_RPATH</span></code>, in those cases in which the packages also contain binary executables
+that depend on libraries within the same package, entries will be added to reflect
+the location of the libraries relative to the executable. If a package has executables
+in the <cite>bin</cite> subfolder and libraries in the <cite>lib</cite> subfolder, this can be performed
+with an invocation like this:</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>install_name_tool /path/to/bin/my_executable -add_rpath @executable_path/../lib
+</pre></div>
+</div>
+<p>This tool is typically needed by recipes that use Autotools as the build system and in the
+case that the correct install names are not fixed in the library being packaged. Use this
+tool, if needed, in the conanfile’s <code class="docutils literal notranslate"><span class="pre">package()</span></code> method like:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conan.tools.apple</span> <span class="kn">import</span> <span class="n">fix_apple_shared_install_name</span>
+
+<span class="k">class</span> <span class="nc">HelloConan</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
+
+  <span class="o">...</span>
+
+  <span class="k">def</span> <span class="nf">package</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="n">autotools</span> <span class="o">=</span> <span class="n">Autotools</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+      <span class="n">autotools</span><span class="o">.</span><span class="n">install</span><span class="p">()</span>
+      <span class="n">fix_apple_shared_install_name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="conan-tools-apple-is-apple-os">
+<span id="id2"></span><h1>conan.tools.apple.is_apple_os()<a class="headerlink" href="#conan-tools-apple-is-apple-os" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="conan.tools.apple.is_apple_os">
+<code class="descname">is_apple_os</code><span class="sig-paren">(</span><em>conanfile</em><span class="sig-paren">)</span><a class="headerlink" href="#conan.tools.apple.is_apple_os" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns True if OS is Apple one (Macos, iOS, watchOS or tvOS</p>
+</dd></dl>
+
+</div>
+<div class="section" id="conan-tools-apple-to-apple-arch">
+<span id="id3"></span><h1>conan.tools.apple.to_apple_arch()<a class="headerlink" href="#conan-tools-apple-to-apple-arch" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="conan.tools.apple.to_apple_arch">
+<code class="descname">to_apple_arch</code><span class="sig-paren">(</span><em>conanfile</em>, <em>default=None</em><span class="sig-paren">)</span><a class="headerlink" href="#conan.tools.apple.to_apple_arch" title="Permalink to this definition">¶</a></dt>
+<dd><p>converts conan-style architecture into Apple-style arch</p>
+</dd></dl>
+
+</div>
+<div class="section" id="conan-tools-apple-xcrun">
+<span id="id4"></span><h1>conan.tools.apple.XCRun()<a class="headerlink" href="#conan-tools-apple-xcrun" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="conan.tools.apple.XCRun">
+<em class="property">class </em><code class="descname">XCRun</code><span class="sig-paren">(</span><em>conanfile</em>, <em>sdk=None</em>, <em>use_settings_target=False</em><span class="sig-paren">)</span><a class="headerlink" href="#conan.tools.apple.XCRun" title="Permalink to this definition">¶</a></dt>
+<dd><p>XCRun is a wrapper for the Apple <strong>xcrun</strong> tool used to get information for building.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>conanfile</strong> – Conanfile instance.</li>
+<li><strong>sdk</strong> – Will skip the flag when <code class="docutils literal notranslate"><span class="pre">False</span></code> is passed and will try to adjust the
+sdk it automatically if <code class="docutils literal notranslate"><span class="pre">None</span></code> is passed.</li>
+<li><strong>target_settings</strong> – Try to use <code class="docutils literal notranslate"><span class="pre">settings_target</span></code> in case they exist (<code class="docutils literal notranslate"><span class="pre">False</span></code> by default)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="conan.tools.apple.XCRun.find">
+<code class="descname">find</code><span class="sig-paren">(</span><em>tool</em><span class="sig-paren">)</span><a class="headerlink" href="#conan.tools.apple.XCRun.find" title="Permalink to this definition">¶</a></dt>
+<dd><p>find SDK tools (e.g. clang, ar, ranlib, lipo, codesign, etc.)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="conan.tools.apple.XCRun.sdk_path">
+<code class="descname">sdk_path</code><a class="headerlink" href="#conan.tools.apple.XCRun.sdk_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>obtain sdk path (aka apple sysroot or -isysroot</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="conan.tools.apple.XCRun.sdk_version">
+<code class="descname">sdk_version</code><a class="headerlink" href="#conan.tools.apple.XCRun.sdk_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>obtain sdk version</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="conan.tools.apple.XCRun.sdk_platform_path">
+<code class="descname">sdk_platform_path</code><a class="headerlink" href="#conan.tools.apple.XCRun.sdk_platform_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>obtain sdk platform path</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="conan.tools.apple.XCRun.sdk_platform_version">
+<code class="descname">sdk_platform_version</code><a class="headerlink" href="#conan.tools.apple.XCRun.sdk_platform_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>obtain sdk platform version</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="conan.tools.apple.XCRun.cc">
+<code class="descname">cc</code><a class="headerlink" href="#conan.tools.apple.XCRun.cc" title="Permalink to this definition">¶</a></dt>
+<dd><p>path to C compiler (CC)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="conan.tools.apple.XCRun.cxx">
+<code class="descname">cxx</code><a class="headerlink" href="#conan.tools.apple.XCRun.cxx" title="Permalink to this definition">¶</a></dt>
+<dd><p>path to C++ compiler (CXX)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="conan.tools.apple.XCRun.ar">
+<code class="descname">ar</code><a class="headerlink" href="#conan.tools.apple.XCRun.ar" title="Permalink to this definition">¶</a></dt>
+<dd><p>path to archiver (AR)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="conan.tools.apple.XCRun.ranlib">
+<code class="descname">ranlib</code><a class="headerlink" href="#conan.tools.apple.XCRun.ranlib" title="Permalink to this definition">¶</a></dt>
+<dd><p>path to archive indexer (RANLIB)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="conan.tools.apple.XCRun.strip">
+<code class="descname">strip</code><a class="headerlink" href="#conan.tools.apple.XCRun.strip" title="Permalink to this definition">¶</a></dt>
+<dd><p>path to symbol removal utility (STRIP)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="conan.tools.apple.XCRun.libtool">
+<code class="descname">libtool</code><a class="headerlink" href="#conan.tools.apple.XCRun.libtool" title="Permalink to this definition">¶</a></dt>
+<dd><p>path to libtool</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../env.html" class="btn btn-neutral float-right" title="conan.tools.env" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="xcodebuild.html" class="btn btn-neutral" title="XcodeBuild" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016-2022, JFrog.
+      Last updated on Dec 02, 2022.
+      <span><a href="#" class="ot-sdk-show-settings">Cookies Settings</a></span>
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <!--<span class="fa fa-pencil-square-o"> Other versions:</span> -->
+      Version: 2.0
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          
+            <dd><a href="/en/1.55/index.html">1.55</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.54/index.html">1.54</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.53/index.html">1.53</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.52/index.html">1.52</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.51/index.html">1.51</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.50/index.html">1.50</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.49/index.html">1.49</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.48/index.html">1.48</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.47/index.html">1.47</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.46/index.html">1.46</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.45/index.html">1.45</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.44/index.html">1.44</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.43/index.html">1.43</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.42/index.html">1.42</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.41/index.html">1.41</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.40/index.html">1.40</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.39/index.html">1.39</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.38/index.html">1.38</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.37/index.html">1.37</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.36/index.html">1.36</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.35/index.html">1.35</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.34/index.html">1.34</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.33/index.html">1.33</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.32/index.html">1.32</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.31/index.html">1.31</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.30/index.html">1.30</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.29/index.html">1.29</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.28/index.html">1.28</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.27/index.html">1.27</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.26/index.html">1.26</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.25/index.html">1.25</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.24/index.html">1.24</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.23/index.html">1.23</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.22/index.html">1.22</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.21/index.html">1.21</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.20/index.html">1.20</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.19/index.html">1.19</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.18/index.html">1.18</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.17/index.html">1.17</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.16/index.html">1.16</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.15/index.html">1.15</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.14/index.html">1.14</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.13/index.html">1.13</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.12/index.html">1.12</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.11/index.html">1.11</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.10/index.html">1.10</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.9/index.html">1.9</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.8/index.html">1.8</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.7/index.html">1.7</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.6/index.html">1.6</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.5/index.html">1.5</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.4/index.html">1.4</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.3/index.html">1.3</a></dd>
+          
+        
+          
+            <dd><a href="/en/2.0/index.html">2.0</a></dd>
+          
+        
+          
+            <dd><a href="/en/latest/index.html">latest</a></dd>
+          
+        
+      </dl>
+      <dl>
+        <dt>Downloads</dt>
+        
+          <dd><a href="/en/2.0/conan.pdf">PDF</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'2.0.0-beta',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  <!-- <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+  <script src="../../../_static/js/modernizr.min.js"></script>
+  <script src="../../../_static/js/search.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+-->
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+
+
+  <script>
+    // initSearch("2.0");
+  </script>
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WK44ZFM" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+ 
+
+
+</body>
+</html>

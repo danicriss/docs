@@ -1,0 +1,1010 @@
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>conan.tools.files basic operations &mdash; conan 2.0.0-beta documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/conan-favicon.png"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+
+  
+    <link rel="stylesheet" href="../../../_static/css/signup.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../../../_static/css/search.css" type="text/css" />
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="conan 2.0.0-beta documentation" href="../../../index.html"/>
+        <link rel="up" title="conan.tools.files" href="../files.html"/>
+        <link rel="next" title="conan.tools.files downloads" href="downloads.html"/>
+        <link rel="prev" title="conan.tools.files" href="../files.html"/>
+
+ <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WK44ZFM');</script>
+<!-- End Google Tag Manager -->
+ 
+
+
+
+</script>
+
+
+  
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="https://conan.io">
+          
+
+          
+            
+            <img src="../../../_static/conan-logo-2.0.png" class="logo" />
+          
+          </a>
+
+            
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../whatsnew.html">What’s new in Conan 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../integrations.html">Integrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../reference.html">Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../commands.html">Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../conanfile.html">conanfile.py</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../tools.html">Tools</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../cmake.html">conan.tools.cmake</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gnu.html">conan.tools.gnu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../apple.html">conan.tools.apple</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../env.html">conan.tools.env</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../build.html">conan.tools.build</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../files.html">conan.tools.files</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">conan.tools.files basic operations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="downloads.html">conan.tools.files downloads</a></li>
+<li class="toctree-l4"><a class="reference internal" href="patches.html">conan.tools.files patches</a></li>
+<li class="toctree-l4"><a class="reference internal" href="checksum.html">conan.tools.files checksums</a></li>
+<li class="toctree-l4"><a class="reference internal" href="symlinks.html">conan.tools.files.symlinks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="packaging.html">conan.tools.files AutoPackager</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../meson.html">conan.tools.meson</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../system.html">conan.tools.system</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../microsoft.html">conan.tools.microsoft</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scm.html">Git</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../extensions.html">Extensions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+
+            
+          
+          <div class="dark_newsletter-div">
+             <p>Sign up for release updates:</p>
+              <script src="https://app-lon04.marketo.com/js/forms2/js/forms2.min.js"></script>
+              <form id="mktoForm_1479"></form>
+              <script>MktoForms2.loadForm("https://app-lon04.marketo.com", "256-FNZ-187", 1479);</script>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">conan</a>
+        
+      </nav>
+
+
+      
+      <script>
+        var reldir = "../../../index.html".replace("index.html","").replace("#", "");
+      </script>
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation" id="breadcrumbs">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../reference.html">Reference</a> &raquo;</li>
+        
+          <li><a href="../../tools.html">Tools</a> &raquo;</li>
+        
+          <li><a href="../files.html">conan.tools.files</a> &raquo;</li>
+        
+      <li>conan.tools.files basic operations</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/conan-io/docs/blob/master/reference/tools/files/basic.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+</div>
+          <!--<select id="search" name="state" multiple="true" onchange="window.location = reldir + this.value;" style="width:90%"></select>
+          <hr/>-->
+          <!--<div class="admonition important">
+            <p class="admonition-title">Announcement</p>
+            <p>Recipe Hacking no. 2! Building on what we learnt during the first installment we will be working on more Conan 2.0 Migration! We'll start by reviewing some open pull requests and hopefully tackle a CMake example. <a
+            href=https://jfrog.zoom.us/webinar/register/WN_grFhqH0yRBeIfJmBvQoPJw> Register here to attend.</a></p>
+          </div>-->
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="conan-tools-files-basic-operations">
+<h1>conan.tools.files basic operations<a class="headerlink" href="#conan-tools-files-basic-operations" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="conan-tools-files-copy">
+<span id="id1"></span><h2>conan.tools.files.copy()<a class="headerlink" href="#conan-tools-files-copy" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="conan.tools.files.copy_pattern.copy">
+<code class="descname">copy</code><span class="sig-paren">(</span><em>conanfile</em>, <em>pattern</em>, <em>src</em>, <em>dst</em>, <em>keep_path=True</em>, <em>excludes=None</em>, <em>ignore_case=True</em><span class="sig-paren">)</span><a class="headerlink" href="#conan.tools.files.copy_pattern.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Copy the files matching the pattern (fnmatch) at the src folder to a dst folder.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>conanfile</strong> – The current recipe object. Always use <code class="docutils literal notranslate"><span class="pre">self</span></code>.</li>
+<li><strong>pattern</strong> – (Required) An fnmatch file pattern of the files that should be copied.
+It must not start with <code class="docutils literal notranslate"><span class="pre">..</span></code> relative path or an exception will be raised.</li>
+<li><strong>src</strong> – (Required) Source folder in which those files will be searched. This folder
+will be stripped from the dst parameter. E.g., lib/Debug/x86.</li>
+<li><strong>dst</strong> – (Required) Destination local folder. It must be different from src value or an
+exception will be raised.</li>
+<li><strong>keep_path</strong> – (Optional, defaulted to <code class="docutils literal notranslate"><span class="pre">True</span></code>) Means if you want to keep the relative
+path when you copy the files from the src folder to the dst one.</li>
+<li><strong>excludes</strong> – (Optional, defaulted to <code class="docutils literal notranslate"><span class="pre">None</span></code>) A tuple/list of fnmatch patterns or even a
+single one to be excluded from the copy.</li>
+<li><strong>ignore_case</strong> – (Optional, defaulted to <code class="docutils literal notranslate"><span class="pre">True</span></code>) If enabled, it will do a
+case-insensitive pattern matching. will do a case-insensitive pattern matching when
+<code class="docutils literal notranslate"><span class="pre">True</span></code></li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">list of copied files</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<p>Usage:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">package</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;*.h&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">source_folder</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">package_folder</span><span class="p">,</span> <span class="s2">&quot;include&quot;</span><span class="p">))</span>
+    <span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;*.lib&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_folder</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">package_folder</span><span class="p">,</span> <span class="s2">&quot;lib&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>The files that are <strong>symlinks to files</strong> or <strong>symlinks to folders</strong> with be treated like any other file, so they will only
+be copied if the specified pattern matches with the file.</p>
+<p>At the destination folder, the symlinks will be created pointing to the exact same file or folder, absolute or relative,
+being the responsibility of the user to manipulate the symlink to, for example, transform the symlink into a relative path
+before copying it so it points to the destination folder.</p>
+<p class="last">Check <a class="reference internal" href="symlinks.html#id1"><span class="std std-ref">here</span></a> the reference of tools to manage symlinks.</p>
+</div>
+</div>
+<div class="section" id="conan-tools-files-load">
+<h2>conan.tools.files.load()<a class="headerlink" href="#conan-tools-files-load" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="conan.tools.files.files.load">
+<code class="descname">load</code><span class="sig-paren">(</span><em>conanfile</em>, <em>path</em>, <em>encoding='utf-8'</em><span class="sig-paren">)</span><a class="headerlink" href="#conan.tools.files.files.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Utility function to load files in one line. It will manage the open and close of the file,
+and load binary encodings. Returns the content of the file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>conanfile</strong> – The current recipe object. Always use <code class="docutils literal notranslate"><span class="pre">self</span></code>.</li>
+<li><strong>path</strong> – Path to the file to read</li>
+<li><strong>encoding</strong> – (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">utf-8</span></code>): Specifies the input file text encoding.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The contents of the file</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<p>Usage:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conan.tools.files</span> <span class="kn">import</span> <span class="n">load</span>
+
+<span class="n">content</span> <span class="o">=</span> <span class="n">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;myfile.txt&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="conan-tools-files-save">
+<h2>conan.tools.files.save()<a class="headerlink" href="#conan-tools-files-save" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="conan.tools.files.files.save">
+<code class="descname">save</code><span class="sig-paren">(</span><em>conanfile</em>, <em>path</em>, <em>content</em>, <em>append=False</em>, <em>encoding='utf-8'</em><span class="sig-paren">)</span><a class="headerlink" href="#conan.tools.files.files.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Utility function to save files in one line. It will manage the open and close of the file
+and creating directories if necessary.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>conanfile</strong> – The current recipe object. Always use <code class="docutils literal notranslate"><span class="pre">self</span></code>.</li>
+<li><strong>path</strong> – Path of the file to be created.</li>
+<li><strong>content</strong> – Content (str or bytes) to be write to the file.</li>
+<li><strong>append</strong> – (Optional, Defaulted to False): If <code class="docutils literal notranslate"><span class="pre">True</span></code> the contents will be appended to the
+existing one.</li>
+<li><strong>encoding</strong> – (Optional, Defaulted to utf-8): Specifies the output file text encoding.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<p>Usage:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conan.tools.files</span> <span class="kn">import</span> <span class="n">save</span>
+
+<span class="n">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;path/to/otherfile.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;contents of the file&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="conan-tools-files-rename">
+<h2>conan.tools.files.rename()<a class="headerlink" href="#conan-tools-files-rename" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="conan.tools.files.files.rename">
+<code class="descname">rename</code><span class="sig-paren">(</span><em>conanfile</em>, <em>src</em>, <em>dst</em><span class="sig-paren">)</span><a class="headerlink" href="#conan.tools.files.files.rename" title="Permalink to this definition">¶</a></dt>
+<dd><p>Utility functions to rename a file or folder src to dst with retrying. <code class="docutils literal notranslate"><span class="pre">os.rename()</span></code>
+frequently raises “Access is denied” exception on Windows.
+This function renames file or folder using robocopy to avoid the exception on Windows.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>conanfile</strong> – The current recipe object. Always use <code class="docutils literal notranslate"><span class="pre">self</span></code>.</li>
+<li><strong>src</strong> – Path to be renamed.</li>
+<li><strong>dst</strong> – Path to be renamed to.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<p>Usage:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conan.tools.files</span> <span class="kn">import</span> <span class="n">rename</span>
+
+<span class="k">def</span> <span class="nf">source</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">rename</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;lib-sources-abe2h9fe&quot;</span><span class="p">,</span> <span class="s2">&quot;sources&quot;</span><span class="p">)</span>  <span class="c1"># renaming a folder</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="conan-tools-files-replace-in-file">
+<span id="id2"></span><h2>conan.tools.files.replace_in_file()<a class="headerlink" href="#conan-tools-files-replace-in-file" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="conan.tools.files.files.replace_in_file">
+<code class="descname">replace_in_file</code><span class="sig-paren">(</span><em>conanfile</em>, <em>file_path</em>, <em>search</em>, <em>replace</em>, <em>strict=True</em>, <em>encoding='utf-8'</em><span class="sig-paren">)</span><a class="headerlink" href="#conan.tools.files.files.replace_in_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Replace a string <code class="docutils literal notranslate"><span class="pre">search</span></code> in the contents of the file <code class="docutils literal notranslate"><span class="pre">file_path</span></code> with the string replace.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>conanfile</strong> – The current recipe object. Always use <code class="docutils literal notranslate"><span class="pre">self</span></code>.</li>
+<li><strong>file_path</strong> – File path of the file to perform the replacing.</li>
+<li><strong>search</strong> – String you want to be replaced.</li>
+<li><strong>replace</strong> – String to replace the searched string.</li>
+<li><strong>strict</strong> – (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">True</span></code>) If <code class="docutils literal notranslate"><span class="pre">True</span></code>, it raises an error if the searched
+string is not found, so nothing is actually replaced.</li>
+<li><strong>encoding</strong> – (Optional, Defaulted to utf-8): Specifies the input and output files text
+encoding.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<p>Usage:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conan.tools.files</span> <span class="kn">import</span> <span class="n">replace_in_file</span>
+
+<span class="n">replace_in_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">source_folder</span><span class="p">,</span> <span class="s2">&quot;folder&quot;</span><span class="p">,</span> <span class="s2">&quot;file.txt&quot;</span><span class="p">),</span> <span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;bar&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="conan-tools-files-rm">
+<h2>conan.tools.files.rm()<a class="headerlink" href="#conan-tools-files-rm" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="conan.tools.files.files.rm">
+<code class="descname">rm</code><span class="sig-paren">(</span><em>conanfile</em>, <em>pattern</em>, <em>folder</em>, <em>recursive=False</em><span class="sig-paren">)</span><a class="headerlink" href="#conan.tools.files.files.rm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Utility functions to remove files matching a <code class="docutils literal notranslate"><span class="pre">pattern</span></code> in a <code class="docutils literal notranslate"><span class="pre">folder</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>conanfile</strong> – The current recipe object. Always use <code class="docutils literal notranslate"><span class="pre">self</span></code>.</li>
+<li><strong>pattern</strong> – Pattern that the files to be removed have to match (fnmatch).</li>
+<li><strong>folder</strong> – Folder to search/remove the files.</li>
+<li><strong>recursive</strong> – If <code class="docutils literal notranslate"><span class="pre">recursive</span></code> is specified it will search in the subfolders.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<p>Usage:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conan.tools.files</span> <span class="kn">import</span> <span class="n">rm</span>
+
+<span class="n">rm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;*.tmp&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_folder</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="conan-tools-files-mkdir">
+<h2>conan.tools.files.mkdir()<a class="headerlink" href="#conan-tools-files-mkdir" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="conan.tools.files.files.mkdir">
+<code class="descname">mkdir</code><span class="sig-paren">(</span><em>conanfile</em>, <em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#conan.tools.files.files.mkdir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Utility functions to create a directory. The existence of the specified directory is checked,
+so mkdir() will do nothing if the directory already exists.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>conanfile</strong> – The current recipe object. Always use <code class="docutils literal notranslate"><span class="pre">self</span></code>.</li>
+<li><strong>path</strong> – Path to the folder to be created.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<p>Usage:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conan.tools.files</span> <span class="kn">import</span> <span class="n">mkdir</span>
+
+<span class="n">mkdir</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;mydir&quot;</span><span class="p">)</span> <span class="c1"># Creates mydir if it does not already exist</span>
+<span class="n">mkdir</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;mydir&quot;</span><span class="p">)</span> <span class="c1"># Does nothing</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="conan-tools-files-rmdir">
+<h2>conan.tools.files.rmdir()<a class="headerlink" href="#conan-tools-files-rmdir" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="conan.tools.files.files.rmdir">
+<code class="descname">rmdir</code><span class="sig-paren">(</span><em>conanfile</em>, <em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#conan.tools.files.files.rmdir" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Usage:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conan.tools.files</span> <span class="kn">import</span> <span class="n">rmdir</span>
+
+<span class="n">rmdir</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;mydir&quot;</span><span class="p">)</span> <span class="c1"># Remove mydir if it exist</span>
+<span class="n">rmdir</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;mydir&quot;</span><span class="p">)</span> <span class="c1"># Does nothing</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="conan-tools-files-chdir">
+<h2>conan.tools.files.chdir()<a class="headerlink" href="#conan-tools-files-chdir" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="conan.tools.files.files.chdir">
+<code class="descname">chdir</code><span class="sig-paren">(</span><em>conanfile</em>, <em>newdir</em><span class="sig-paren">)</span><a class="headerlink" href="#conan.tools.files.files.chdir" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a context manager that allows to temporary change the current directory in your conanfile</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>conanfile</strong> – The current recipe object. Always use <code class="docutils literal notranslate"><span class="pre">self</span></code>.</li>
+<li><strong>newdir</strong> – Directory path name to change the current directory.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<p>Usage:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conan.tools.files</span> <span class="kn">import</span> <span class="n">chdir</span>
+
+<span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">chdir</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;./subdir&quot;</span><span class="p">):</span>
+        <span class="n">do_something</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="conan-tools-files-unzip">
+<span id="id3"></span><h2>conan.tools.files.unzip()<a class="headerlink" href="#conan-tools-files-unzip" title="Permalink to this headline">¶</a></h2>
+<p>This function extract different compressed formats (<code class="docutils literal notranslate"><span class="pre">.tar.gz</span></code>, <code class="docutils literal notranslate"><span class="pre">.tar</span></code>, <code class="docutils literal notranslate"><span class="pre">.tzb2</span></code>, <code class="docutils literal notranslate"><span class="pre">.tar.bz2</span></code>, <code class="docutils literal notranslate"><span class="pre">.tgz</span></code>, <code class="docutils literal notranslate"><span class="pre">.txz</span></code>,
+<code class="docutils literal notranslate"><span class="pre">tar.xz</span></code>, and <code class="docutils literal notranslate"><span class="pre">.zip</span></code>) into the given destination folder.</p>
+<p>It also accepts gzipped files, with extension <code class="docutils literal notranslate"><span class="pre">.gz</span></code> (not matching any of the above), and it will unzip them into a file with the same name
+but without the extension, or to a filename defined by the <code class="docutils literal notranslate"><span class="pre">destination</span></code> argument.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conan.tools.files</span> <span class="kn">import</span> <span class="n">unzip</span>
+
+<span class="n">unzip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;myfile.zip&quot;</span><span class="p">)</span>
+<span class="c1"># or to extract in &quot;myfolder&quot; sub-folder</span>
+<span class="n">unzip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;myfile.zip&quot;</span><span class="p">,</span> <span class="s2">&quot;myfolder&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can keep the permissions of the files using the <code class="docutils literal notranslate"><span class="pre">keep_permissions=True</span></code> parameter.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conan.tools.files</span> <span class="kn">import</span> <span class="n">unzip</span>
+
+<span class="n">unzip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;myfile.zip&quot;</span><span class="p">,</span> <span class="s2">&quot;myfolder&quot;</span><span class="p">,</span> <span class="n">keep_permissions</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">pattern</span></code> argument if you want to filter specific files and paths to decompress from the archive.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conan.tools.files</span> <span class="kn">import</span> <span class="n">unzip</span>
+
+<span class="c1"># Extract only files inside relative folder &quot;small&quot;</span>
+<span class="n">unzip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;bigfile.zip&quot;</span><span class="p">,</span> <span class="n">pattern</span><span class="o">=</span><span class="s2">&quot;small/*&quot;</span><span class="p">)</span>
+<span class="c1"># Extract only txt files</span>
+<span class="n">unzip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;bigfile.zip&quot;</span><span class="p">,</span> <span class="n">pattern</span><span class="o">=</span><span class="s2">&quot;*.txt&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="function">
+<dt id="conan.tools.files.files.unzip">
+<code class="descname">unzip</code><span class="sig-paren">(</span><em>conanfile</em>, <em>filename</em>, <em>destination='.'</em>, <em>keep_permissions=False</em>, <em>pattern=None</em>, <em>strip_root=False</em><span class="sig-paren">)</span><a class="headerlink" href="#conan.tools.files.files.unzip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract different compressed formats</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>conanfile</strong> – The current recipe object. Always use <code class="docutils literal notranslate"><span class="pre">self</span></code>.</li>
+<li><strong>filename</strong> – Path to the compressed file.</li>
+<li><strong>destination</strong> – (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">.</span></code>) Destination folder (or file for .gz files)</li>
+<li><strong>keep_permissions</strong> – (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">False</span></code>) Keep the zip permissions.
+WARNING: Can be dangerous if the zip was not created in a NIX system, the bits could
+produce undefined permission schema. Use this option only if you are sure that the zip
+was created correctly.</li>
+<li><strong>pattern</strong> – (Optional, Defaulted to <code class="docutils literal notranslate"><span class="pre">None</span></code>) Extract only paths matching the pattern.
+This should be a Unix shell-style wildcard, see fnmatch documentation for more details.</li>
+<li><strong>strip_root</strong> – (Optional, Defaulted to False) If True, and all the unzipped contents are
+in a single folder it will flat the folder moving all the contents to the parent folder.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="conan-tools-files-update-conandata">
+<h2>conan.tools.files.update_conandata()<a class="headerlink" href="#conan-tools-files-update-conandata" title="Permalink to this headline">¶</a></h2>
+<p>This function reads the <code class="docutils literal notranslate"><span class="pre">conandata.yml</span></code> inside the exported folder in the conan cache, if it exists.
+If the <code class="docutils literal notranslate"><span class="pre">conandata.yml</span></code> does not exist, it will create it.
+Then, it updates the conandata dictionary with the provided <code class="docutils literal notranslate"><span class="pre">data</span></code> one, which is updated recursively,
+prioritizing the <code class="docutils literal notranslate"><span class="pre">data</span></code> values, but keeping other existing ones. Finally the <code class="docutils literal notranslate"><span class="pre">conandata.yml</span></code> is saved
+in the same place.</p>
+<p>This helper can only be used within the <code class="docutils literal notranslate"><span class="pre">export()</span></code> method, it can raise otherwise. One application is
+to capture in the <code class="docutils literal notranslate"><span class="pre">conandata.yml</span></code> the scm coordinates (like Git remote url and commit), to be able to
+recover it later in the <code class="docutils literal notranslate"><span class="pre">source()</span></code> method and have reproducible recipes that can build from sources
+without actually storing the sources in the recipe.</p>
+<p>Usage:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conan</span> <span class="kn">import</span> <span class="n">ConanFile</span>
+<span class="kn">from</span> <span class="nn">conan.tools.files</span> <span class="kn">import</span> <span class="n">update_conandata</span>
+
+<span class="k">class</span> <span class="nc">Pkg</span><span class="p">(</span><span class="n">ConanFile</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;pkg&quot;</span>
+    <span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;0.1&quot;</span>
+
+    <span class="k">def</span> <span class="nf">export</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># This is an example, doesn&#39;t make sense to have static data, instead you</span>
+        <span class="c1"># could put the data directly in a conandata.yml file.</span>
+        <span class="c1"># This would be useful for storing dynamic data, obtained at export() time from elsewhere</span>
+        <span class="n">update_conandata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;mydata&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;nested1&quot;</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span> <span class="s2">&quot;nested2&quot;</span><span class="p">:</span> <span class="s2">&quot;some-string&quot;</span><span class="p">}}})</span>
+
+    <span class="k">def</span> <span class="nf">source</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conan_data</span><span class="p">[</span><span class="s2">&quot;sources&quot;</span><span class="p">][</span><span class="s2">&quot;mydata&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<dl class="function">
+<dt id="conan.tools.files.conandata.update_conandata">
+<code class="descname">update_conandata</code><span class="sig-paren">(</span><em>conanfile</em>, <em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#conan.tools.files.conandata.update_conandata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tool to modify the <code class="docutils literal notranslate"><span class="pre">conandata.yml</span></code> once it is exported. It can be used, for example:</p>
+<blockquote>
+<div><ul class="simple">
+<li>To add additional data like the “commit” and “url” for the scm.</li>
+<li>To modify the contents cleaning the data that belong to other versions (different
+from the exported) to avoid changing the recipe revision when the changed data doesn’t
+belong to the current version.</li>
+</ul>
+</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>conanfile</strong> – The current recipe object. Always use <code class="docutils literal notranslate"><span class="pre">self</span></code>.</li>
+<li><strong>data</strong> – (Required) A dictionary (can be nested), of values to update</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="conan-tools-files-collect-libs">
+<span id="id4"></span><h2>conan.tools.files.collect_libs()<a class="headerlink" href="#conan-tools-files-collect-libs" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="conan.tools.files.collect_libs">
+<code class="descname">collect_libs</code><span class="sig-paren">(</span><em>conanfile</em>, <em>folder=None</em><span class="sig-paren">)</span><a class="headerlink" href="#conan.tools.files.collect_libs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a sorted list of library names from the libraries (files with extensions <em>.so</em>, <em>.lib</em>,
+<em>.a</em> and <em>.dylib</em>) located inside the <code class="docutils literal notranslate"><span class="pre">conanfile.cpp_info.libdirs</span></code> (by default) or the
+<strong>folder</strong> directory relative to the package folder. Useful to collect not inter-dependent
+libraries or with complex names like <code class="docutils literal notranslate"><span class="pre">libmylib-x86-debug-en.lib</span></code>.</p>
+<p>For UNIX libraries staring with <strong>lib</strong>, like <em>libmath.a</em>, this tool will collect the library
+name <strong>math</strong>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>conanfile</strong> – The current recipe object. Always use <code class="docutils literal notranslate"><span class="pre">self</span></code>.</li>
+<li><strong>(</strong><strong>Optional</strong><strong>, </strong><strong>Defaulted to None</strong><strong>)</strong> (<em>folder</em>) – String indicating the subfolder name inside
+<code class="docutils literal notranslate"><span class="pre">conanfile.package_folder</span></code> where the library files are.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A list with the library names</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This tool collects the libraries searching directly inside the package folder and returns them in no specific order. If libraries are
+inter-dependent, then <code class="docutils literal notranslate"><span class="pre">package_info()</span></code> method should order them to achieve correct linking order.</p>
+</div>
+<p>Usage:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">conan.tools.files</span> <span class="kn">import</span> <span class="n">collect_libs</span>
+
+<span class="k">def</span> <span class="nf">package_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">cpp_info</span><span class="o">.</span><span class="n">libdirs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;lib&quot;</span><span class="p">,</span> <span class="s2">&quot;other_libdir&quot;</span><span class="p">]</span>  <span class="c1"># Default value is &#39;lib&#39;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">cpp_info</span><span class="o">.</span><span class="n">libs</span> <span class="o">=</span> <span class="n">tools</span><span class="o">.</span><span class="n">collect_libs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For UNIX libraries starting with <strong>lib</strong>, like <em>libmath.a</em>, this tool will collect the
+library name <strong>math</strong>. Regarding symlinks, this tool will keep only the “most generic”
+file among the resolved real file and all symlinks pointing to this real file. For example
+among files below, this tool will select <em>libmath.dylib</em> file and therefore only append
+<em>math</em> in the returned list:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>-rwxr-xr-x libmath.1.0.0.dylib lrwxr-xr-x libmath.1.dylib -&gt; libmath.1.0.0.dylib
+lrwxr-xr-x libmath.dylib -&gt; libmath.1.dylib
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="downloads.html" class="btn btn-neutral float-right" title="conan.tools.files downloads" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../files.html" class="btn btn-neutral" title="conan.tools.files" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016-2022, JFrog.
+      Last updated on Dec 02, 2022.
+      <span><a href="#" class="ot-sdk-show-settings">Cookies Settings</a></span>
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <!--<span class="fa fa-pencil-square-o"> Other versions:</span> -->
+      Version: 2.0
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          
+            <dd><a href="/en/1.55/index.html">1.55</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.54/index.html">1.54</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.53/index.html">1.53</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.52/index.html">1.52</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.51/index.html">1.51</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.50/index.html">1.50</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.49/index.html">1.49</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.48/index.html">1.48</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.47/index.html">1.47</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.46/index.html">1.46</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.45/index.html">1.45</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.44/index.html">1.44</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.43/index.html">1.43</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.42/index.html">1.42</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.41/index.html">1.41</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.40/index.html">1.40</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.39/index.html">1.39</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.38/index.html">1.38</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.37/index.html">1.37</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.36/index.html">1.36</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.35/index.html">1.35</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.34/index.html">1.34</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.33/index.html">1.33</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.32/index.html">1.32</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.31/index.html">1.31</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.30/index.html">1.30</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.29/index.html">1.29</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.28/index.html">1.28</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.27/index.html">1.27</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.26/index.html">1.26</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.25/index.html">1.25</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.24/index.html">1.24</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.23/index.html">1.23</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.22/index.html">1.22</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.21/index.html">1.21</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.20/index.html">1.20</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.19/index.html">1.19</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.18/index.html">1.18</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.17/index.html">1.17</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.16/index.html">1.16</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.15/index.html">1.15</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.14/index.html">1.14</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.13/index.html">1.13</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.12/index.html">1.12</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.11/index.html">1.11</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.10/index.html">1.10</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.9/index.html">1.9</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.8/index.html">1.8</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.7/index.html">1.7</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.6/index.html">1.6</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.5/index.html">1.5</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.4/index.html">1.4</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.3/index.html">1.3</a></dd>
+          
+        
+          
+            <dd><a href="/en/2.0/index.html">2.0</a></dd>
+          
+        
+          
+            <dd><a href="/en/latest/index.html">latest</a></dd>
+          
+        
+      </dl>
+      <dl>
+        <dt>Downloads</dt>
+        
+          <dd><a href="/en/2.0/conan.pdf">PDF</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'2.0.0-beta',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  <!-- <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+  <script src="../../../_static/js/modernizr.min.js"></script>
+  <script src="../../../_static/js/search.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+-->
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+
+
+  <script>
+    // initSearch("2.0");
+  </script>
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WK44ZFM" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+ 
+
+
+</body>
+</html>

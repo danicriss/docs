@@ -1,0 +1,678 @@
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>conan cache &mdash; conan 2.0.0-beta documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/conan-favicon.png"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+
+  
+    <link rel="stylesheet" href="../../_static/css/signup.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../../_static/css/search.css" type="text/css" />
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="conan 2.0.0-beta documentation" href="../../index.html"/>
+        <link rel="up" title="Commands" href="../commands.html"/>
+        <link rel="next" title="conan config" href="config.html"/>
+        <link rel="prev" title="Commands" href="../commands.html"/>
+
+ <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WK44ZFM');</script>
+<!-- End Google Tag Manager -->
+ 
+
+
+
+</script>
+
+
+  
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="https://conan.io">
+          
+
+          
+            
+            <img src="../../_static/conan-logo-2.0.png" class="logo" />
+          
+          </a>
+
+            
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../whatsnew.html">What’s new in Conan 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../integrations.html">Integrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../reference.html">Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../commands.html">Commands</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">conan cache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config.html">conan config</a></li>
+<li class="toctree-l3"><a class="reference internal" href="graph.html">conan graph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inspect.html">conan inspect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html">conan install</a></li>
+<li class="toctree-l3"><a class="reference internal" href="list.html">conan list</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lock.html">conan lock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="profile.html">conan profile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="remove.html">conan remove</a></li>
+<li class="toctree-l3"><a class="reference internal" href="remote.html">conan remote</a></li>
+<li class="toctree-l3"><a class="reference internal" href="search.html">conan search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="upload.html">conan upload</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../conanfile.html">conanfile.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools.html">Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions.html">Extensions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+</ul>
+
+            
+          
+          <div class="dark_newsletter-div">
+             <p>Sign up for release updates:</p>
+              <script src="https://app-lon04.marketo.com/js/forms2/js/forms2.min.js"></script>
+              <form id="mktoForm_1479"></form>
+              <script>MktoForms2.loadForm("https://app-lon04.marketo.com", "256-FNZ-187", 1479);</script>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">conan</a>
+        
+      </nav>
+
+
+      
+      <script>
+        var reldir = "../../index.html".replace("index.html","").replace("#", "");
+      </script>
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation" id="breadcrumbs">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../reference.html">Reference</a> &raquo;</li>
+        
+          <li><a href="../commands.html">Commands</a> &raquo;</li>
+        
+      <li>conan cache</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/conan-io/docs/blob/master/reference/commands/cache.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+</div>
+          <!--<select id="search" name="state" multiple="true" onchange="window.location = reldir + this.value;" style="width:90%"></select>
+          <hr/>-->
+          <!--<div class="admonition important">
+            <p class="admonition-title">Announcement</p>
+            <p>Recipe Hacking no. 2! Building on what we learnt during the first installment we will be working on more Conan 2.0 Migration! We'll start by reviewing some open pull requests and hopefully tackle a CMake example. <a
+            href=https://jfrog.zoom.us/webinar/register/WN_grFhqH0yRBeIfJmBvQoPJw> Register here to attend.</a></p>
+          </div>-->
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="conan-cache">
+<span id="reference-commands-cache"></span><h1>conan cache<a class="headerlink" href="#conan-cache" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="conan-cache-path">
+<h2>conan cache path<a class="headerlink" href="#conan-cache-path" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan cache path -h
+usage: conan cache path <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-v <span class="o">[</span>V<span class="o">]]</span> <span class="o">[</span>--logger<span class="o">]</span>
+                        <span class="o">[</span>--folder <span class="o">{</span>export_source,source,build<span class="o">}]</span>
+                        reference
+
+Shows the path <span class="k">in</span> the Conan cache af a given reference
+
+positional arguments:
+reference             Recipe reference or Package reference
+
+optional arguments:
+-h, --help            show this <span class="nb">help</span> message and <span class="nb">exit</span>
+-v <span class="o">[</span>V<span class="o">]</span>                Level of detail of the output. Valid options from less verbose to more
+                        verbose: -vquiet, -verror, -vwarning, -vnotice, -vstatus, -v or
+                        -vverbose, -vv or -vdebug, -vvv or -vtrace
+--logger              Show the output with log format, with time, <span class="nb">type</span> and message.
+--folder <span class="o">{</span>exports,exports_sources,sources,build,package<span class="o">}</span>
+                        Show the path to the specified element. The <span class="s1">&#39;build&#39;</span> and <span class="s1">&#39;package&#39;</span>
+                        requires a package reference. If not specified it shows <span class="s1">&#39;exports&#39;</span> path
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">conan</span> <span class="pre">cache</span> <span class="pre">path</span></code> returns the path in the cache of a given reference. Depending on the reference, it
+could return the path of a recipe, or the path to a package binary.</p>
+<p>Let’s say that we have created a package in our current cache with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan new cmake_lib -d <span class="nv">name</span><span class="o">=</span>pkg -d <span class="nv">version</span><span class="o">=</span><span class="m">0</span>.1
+$ conan create .
+...
+Requirements
+    pkg/0.1#cdc0d9d0e8f554d3df2388c535137d77 - Cache
+
+Requirements
+    pkg/0.1#cdc0d9d0e8f554d3df2388c535137d77:2401fa1d188d289bb25c37cfa3317e13e377a351 - Build
+</pre></div>
+</div>
+<p>And now we are interested in obtaining the path where our <code class="docutils literal notranslate"><span class="pre">pkg/0.1</span></code> recipe <code class="docutils literal notranslate"><span class="pre">conanfile.py</span></code> has been exported:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan cache path pkg/0.1
+&lt;path to conan cache&gt;/p/5cb229164ec1d245/e
+
+$ ls &lt;path to conan cache&gt;/p/5cb229164ec1d245/e
+conanfile.py  conanmanifest.txt
+</pre></div>
+</div>
+<p>By default, if the recipe revision is not specified, it means the “latest” revision in the cache. This can
+also be made explicit by the literal <code class="docutils literal notranslate"><span class="pre">#latest</span></code>, and also any recipe revision can be explicitly defined,
+these commands are equivalent to the above:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan cache path pkg/0.1#latest
+&lt;path to conan cache&gt;/p/5cb229164ec1d245/e
+
+<span class="c1"># The recipe revision might be different in your case.</span>
+<span class="c1"># Check the &quot;conan create&quot; output to get yours</span>
+$ conan cache path pkg/0.1#cdc0d9d0e8f554d3df2388c535137d77
+&lt;path to conan cache&gt;/p/5cb229164ec1d245/e
+</pre></div>
+</div>
+<p>Together with the recipe folder, there are a two other folders that are common to all the binaries
+produced with this recipe: the “export_source” folder and the “source” folder. Both can be
+obtained with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan cache path pkg/0.1 --folder<span class="o">=</span>export_source
+&lt;path to conan cache&gt;/p/5cb229164ec1d245/es
+
+$ ls &lt;path to conan cache&gt;/p/5cb229164ec1d245/es
+CMakeLists.txt  include/  src/
+
+$ conan cache path pkg/0.1 --folder<span class="o">=</span><span class="nb">source</span>
+&lt;path to conan cache&gt;/p/5cb229164ec1d245/s
+
+$ ls &lt;path to conan cache&gt;/p/5cb229164ec1d245/s
+CMakeLists.txt  include/  src/
+</pre></div>
+</div>
+<p>In this case the contents of the “source” folder are identical to the ones of the “export_source” folder
+because the recipe did not implement any <code class="docutils literal notranslate"><span class="pre">source()</span></code> method that could retrieve code or do any other operation
+over the code, like applying patches.</p>
+<p>The recipe revision by default will be <code class="docutils literal notranslate"><span class="pre">#latest</span></code>, this follows the same rules as above.</p>
+<p>Note that these two folders will not exist if the package has not been built from source, like when a precompiled
+binary is retrieve from a server.</p>
+<p>It is also possible to obtain the folders of the binary packages providing the <code class="docutils literal notranslate"><span class="pre">package_id</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your package_id might be different, it depends on the platform</span>
+<span class="c1"># Check the &quot;conan create&quot; output to obtain yours</span>
+$ conan cache path pkg/0.1:2401fa1d188d289bb25c37cfa3317e13e377a351
+&lt;path to conan cache&gt;/p/1cae77d6250c23b7/p
+
+$ ls &lt;path to conan cache&gt;/p/1cae77d6250c23b7/p
+conaninfo.txt  conanmanifest.txt  include/  lib/
+</pre></div>
+</div>
+<p>As above, by default it will resolve to the “latest” recipe revision and package revision.
+The command above is equal to explicitly defining <code class="docutils literal notranslate"><span class="pre">#latest</span></code> or the exact revisions.
+All the commands below are equivalent to the above one:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan cache path pkg/0.1#latest:2401fa1d188d289bb25c37cfa3317e13e377a351
+&lt;path to conan cache&gt;/p/1cae77d6250c23b7/p
+
+$ conan cache path pkg/0.1#latest:2401fa1d188d289bb25c37cfa3317e13e377a351#latest
+&lt;path to conan cache&gt;/p/1cae77d6250c23b7/p
+
+$ conan cache path pkg/0.1#cdc0d9d0e8f554d3df2388c535137d77:2401fa1d188d289bb25c37cfa3317e13e377a351
+&lt;path to conan cache&gt;/p/1cae77d6250c23b7/p
+</pre></div>
+</div>
+<p>It is possible to access the “build” folder with all the temporary build artifacts:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conan cache path pkg/0.1:2401fa1d188d289bb25c37cfa3317e13e377a351 --folder<span class="o">=</span>build
+&lt;path to conan cache&gt;/p/1cae77d6250c23b7/b
+
+ls -al &lt;path to conan cache&gt;/p/1cae77d6250c23b7/b
+build/  CMakeLists.txt  CMakeUserPresets.json  conaninfo.txt  include/  src/
+</pre></div>
+</div>
+<p>Again, the “build” folder will only exist if the package was built from source.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p><strong>Best practices</strong></p>
+<ul class="last simple">
+<li>This <code class="docutils literal notranslate"><span class="pre">conan</span> <span class="pre">cache</span> <span class="pre">path</span></code> command is intended for eventual inspection of the cache, but the cache
+package storage must be considered <strong>read-only</strong>. Do not modify, change, remove or add files from the cache.</li>
+<li>If you are using this command to obtain the path to artifacts and then copying them, consider the usage of a <code class="docutils literal notranslate"><span class="pre">deployer</span></code>
+instead. In the general case, extracting artifacts from the cache manually is discouraged.</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="config.html" class="btn btn-neutral float-right" title="conan config" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../commands.html" class="btn btn-neutral" title="Commands" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016-2022, JFrog.
+      Last updated on Dec 02, 2022.
+      <span><a href="#" class="ot-sdk-show-settings">Cookies Settings</a></span>
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <!--<span class="fa fa-pencil-square-o"> Other versions:</span> -->
+      Version: 2.0
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          
+            <dd><a href="/en/1.55/index.html">1.55</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.54/index.html">1.54</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.53/index.html">1.53</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.52/index.html">1.52</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.51/index.html">1.51</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.50/index.html">1.50</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.49/index.html">1.49</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.48/index.html">1.48</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.47/index.html">1.47</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.46/index.html">1.46</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.45/index.html">1.45</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.44/index.html">1.44</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.43/index.html">1.43</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.42/index.html">1.42</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.41/index.html">1.41</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.40/index.html">1.40</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.39/index.html">1.39</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.38/index.html">1.38</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.37/index.html">1.37</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.36/index.html">1.36</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.35/index.html">1.35</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.34/index.html">1.34</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.33/index.html">1.33</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.32/index.html">1.32</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.31/index.html">1.31</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.30/index.html">1.30</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.29/index.html">1.29</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.28/index.html">1.28</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.27/index.html">1.27</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.26/index.html">1.26</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.25/index.html">1.25</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.24/index.html">1.24</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.23/index.html">1.23</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.22/index.html">1.22</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.21/index.html">1.21</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.20/index.html">1.20</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.19/index.html">1.19</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.18/index.html">1.18</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.17/index.html">1.17</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.16/index.html">1.16</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.15/index.html">1.15</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.14/index.html">1.14</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.13/index.html">1.13</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.12/index.html">1.12</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.11/index.html">1.11</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.10/index.html">1.10</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.9/index.html">1.9</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.8/index.html">1.8</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.7/index.html">1.7</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.6/index.html">1.6</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.5/index.html">1.5</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.4/index.html">1.4</a></dd>
+          
+        
+          
+            <dd><a href="/en/1.3/index.html">1.3</a></dd>
+          
+        
+          
+            <dd><a href="/en/2.0/index.html">2.0</a></dd>
+          
+        
+          
+            <dd><a href="/en/latest/index.html">latest</a></dd>
+          
+        
+      </dl>
+      <dl>
+        <dt>Downloads</dt>
+        
+          <dd><a href="/en/2.0/conan.pdf">PDF</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'2.0.0-beta',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  <!-- <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+  <script src="../../_static/js/modernizr.min.js"></script>
+  <script src="../../_static/js/search.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+-->
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+
+
+  <script>
+    // initSearch("2.0");
+  </script>
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WK44ZFM" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+ 
+
+
+</body>
+</html>
